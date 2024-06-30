@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/zambie">
+        <file>images/zombies/astronaut zombie.jpg</file>
+        <file>images/zombies/Bucket head zombie.jpg</file>
+        <file>images/zombies/leaf hair zombie.jpg</file>
+        <file>images/zombies/purple hair zombie.jpg</file>
+        <file>images/zombies/regular zombie.jpg</file>
+        <file>images/zombies/tall zombie.jpg</file>
+        <file>images/transparent zombies/astronaut zombie_transparent.png</file>
+        <file>images/transparent zombies/Bucket head zombie_trasparent.png</file>
+        <file>images/transparent zombies/leaf hair zombie_transparent.png</file>
+        <file>images/transparent zombies/purple hair zombie_transparent.png</file>
+        <file>images/transparent zombies/regular zombie_transparent.png</file>
+        <file>images/transparent zombies/tall zombie_transparent.png</file>
+    </qresource>
+    <qresource prefix="/plant">
+        <file>images/plants/boomerang.jpg</file>
+        <file>images/plants/jalapino.jpg</file>
+        <file>images/plants/pea shooter.jpg</file>
+        <file>images/plants/plum mine.jpg</file>
+        <file>images/plants/two_peashooter.jpg</file>
+        <file>images/plants/walnut.jpg</file>
+        <file>images/transparent plants/boomrang_transparent.png</file>
+        <file>images/transparent plants/jalapino_transparent.png</file>
+        <file>images/transparent plants/peashooter transparent.png</file>
+        <file>images/transparent plants/plum mine_transparent.png</file>
+        <file>images/transparent plants/two_peashooter_transparent.png</file>
+        <file>images/transparent plants/walnut_transparent.png</file>
+    </qresource>
+    <qresource prefix="/other">
+        <file>images/Brain.png</file>
+        <file>images/bullet.png</file>
+        <file>images/field.png</file>
+        <file>images/sun.png</file>
+    </qresource>
+</RCC>
