@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
 
+
 class Brain : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT

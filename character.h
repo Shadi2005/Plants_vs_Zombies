@@ -17,6 +17,10 @@ public:
     void decrease_health(int attack_power);
 
     QPair<int,int> loc;
+    static int id_generator;
+    int id;
+signals:
+    void obj_has_deleted();
 };
 
 #endif // CHARACTER_H

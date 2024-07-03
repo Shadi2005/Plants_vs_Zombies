@@ -35,3 +35,7 @@ ZombieCards::ZombieCards(int _type)
     setScale(0.09);
 }
 
+void ZombieCards::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    emit clicked(type, price);
+}

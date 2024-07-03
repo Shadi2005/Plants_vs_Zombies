@@ -9,11 +9,15 @@ class PlantCards : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
-public:
-    PlantCards(int _type);
-private:
     int type;
     int price;
+public:
+    PlantCards(int _type);
+    using QGraphicsPixmapItem::QGraphicsPixmapItem;
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+signals:
+    void clicked(int type, int price);
 };
 
 #endif // PLANTCARDS_H

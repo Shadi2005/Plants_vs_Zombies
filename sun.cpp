@@ -7,7 +7,7 @@ extern Game* game;
 
 Sun::Sun()
 {
-    //locating on a random position in a zombie field
+    //locating
     int x, y;
     int row, column;
     while(1)
@@ -23,8 +23,9 @@ Sun::Sun()
             break;
         }
     }
-    setPixmap(QPixmap(":/other/images/sun.png")); //set picture for sun object
-    setScale(0.1); // make smaller
+    setPixmap(QPixmap(":/other/images/sun.png"));
+    setScale(0.1);
+    setZValue(0);
 
     //make it disapear after some time
     QTimer * timer = new QTimer();
@@ -34,7 +35,7 @@ Sun::Sun()
 
 void Sun::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    emit clicked(); //emit clicked signal to get sun and decrease count of suncontainer
+    emit clicked();
     delete this;
 }
 

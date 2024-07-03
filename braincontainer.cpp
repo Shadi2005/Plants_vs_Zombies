@@ -10,7 +10,7 @@ BrainContainer::BrainContainer(QGraphicsTextItem *parent)
     setPos(800,0);
 }
 
-int BrainContainer::get_brain_count()
+int BrainContainer::getBrainCount()
 {
     return count;
 }
@@ -18,13 +18,16 @@ int BrainContainer::get_brain_count()
 void BrainContainer::increase()
 {
     count += 25;
-    setPlainText(QString("Brain: ") + QString :: number(count)); //updating the brain container text on the screen
+    setPlainText(QString("Brain: ") + QString :: number(count));
 }
 
 void BrainContainer::decrease(int type, int price)
 {
-    if(price > count) //check if the user can afford the zombie
+    if(price > count)
+    {
         return;
+    }
     count -= price;
-    setPlainText(QString("Brain: ") + QString :: number(count)); //updating the brain container text on the screen
+    emit sendZombieType(type);
+    setPlainText(QString("Brain: ") + QString :: number(count));
 }
