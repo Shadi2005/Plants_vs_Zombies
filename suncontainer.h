@@ -13,10 +13,9 @@ public:
     int get_sun_count();
 private:
     unsigned int count;
-
 private slots:
     void increase();
-    void decrease(int type, int price);
+    void decrease(int type, int price); //when buying a plant
 };
 
 

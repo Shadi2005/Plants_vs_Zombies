@@ -8,11 +8,15 @@
 class ZombieCards : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
-public:
-    ZombieCards(int _type);
-private:
     int type;
     int price;
+public:
+    ZombieCards(int _type);
+    using QGraphicsPixmapItem::QGraphicsPixmapItem;
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+signals:
+    void clicked(int type, int price);
 };
 
 #endif // ZOMBIECARDS_H

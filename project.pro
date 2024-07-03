@@ -9,28 +9,44 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    boomerang.cpp \
     brain.cpp \
     braincontainer.cpp \
     character.cpp \
     game.cpp \
     ground.cpp \
+    jalapeno.cpp \
     main.cpp \
+    peashooter.cpp \
+    plant.cpp \
     plantcards.cpp \
+    plumMine.cpp \
     square.cpp \
     sun.cpp \
     suncontainer.cpp \
+    twoPeashotter.cpp \
+    walnut.cpp \
+    zombie.cpp \
     zombiecards.cpp
 
 HEADERS += \
+    boomerang.h \
     brain.h \
     braincontainer.h \
     character.h \
     game.h \
     ground.h \
+    jalapeno.h \
+    peashooter.h \
+    plant.h \
     plantcards.h \
+    plumMine.h \
     square.h \
     sun.h \
     suncontainer.h \
+    twoPeashotter.h \
+    walnut.h \
+    zombie.h \
     zombiecards.h
 
 FORMS +=

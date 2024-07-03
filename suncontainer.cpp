@@ -1,5 +1,8 @@
 #include "suncontainer.h"
 #include <QFont>
+#include "game.h"
+
+extern Game* game;
 
 SunContainer::SunContainer(QGraphicsTextItem *parent)
 {
@@ -23,9 +26,10 @@ void SunContainer::increase()
 
 void SunContainer::decrease(int type, int price)
 {
-    if(price > count)  //check if the user can afford the plant
+    if(price > count)
         return;
     count -= price;
-    setPlainText(QString("Sun: ") + QString :: number(count)); //update number of sun on the screen
+    game->ground->set_newPlantType(type);
+    setPlainText(QString("Sun: ") + QString :: number(count));
 }
 
