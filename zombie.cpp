@@ -3,6 +3,8 @@
 #include <QTimer>
 #include <QGraphicsPixmapItem>
 #include <QList>
+#include "plant.h"
+#include "peashooter.h"
 
 extern Game* game;
 
@@ -62,8 +64,7 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
         break;
     }
     setPixmap(QPixmap(path));
-    //setScale(0.1); //it may need to change based on zombie type
-    game->field[loc.first][loc.second]->characters.push_back(this); //check if it works
+    game->field[loc.first][loc.second]->characters.push_back(this);
 
     //moving
     QTimer * moveTimer = new QTimer();

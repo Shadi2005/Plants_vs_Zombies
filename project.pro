@@ -12,6 +12,7 @@ SOURCES += \
     boomerang.cpp \
     brain.cpp \
     braincontainer.cpp \
+    bullet.cpp \
     character.cpp \
     game.cpp \
     ground.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     boomerang.h \
     brain.h \
     braincontainer.h \
+    bullet.h \
     character.h \
     game.h \
     ground.h \
