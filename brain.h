@@ -12,7 +12,7 @@ class Brain : public QObject, public QGraphicsPixmapItem
 public:
     Brain();
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);  //overload this to get brain
 signals:
     void clicked();
 private slots:

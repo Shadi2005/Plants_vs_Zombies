@@ -2,6 +2,7 @@
 
 Square::Square(int row, int column)
 {
+    //seting the ranges of a given square based on manual measurments
     switch (row) {
     case 0:
         yRange = {50,140};

@@ -16,11 +16,11 @@ private:
     unsigned int count;
 
 private slots:
-    void increase();
-    void decrease(int type, int price); //when buying a zombie
+    void increase();    //when clicking on a brain
+    void decrease(int type, int price);    //when buying a zombie
 
 signals:
-    void sendZombieType(int type);
+    void sendZombieType(int type);   //send zombie type to add zombie to ground
 };
 
 #endif // BRAINCONTAINER_H

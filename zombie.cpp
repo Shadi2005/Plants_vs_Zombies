@@ -3,8 +3,11 @@
 #include <QTimer>
 #include <QGraphicsPixmapItem>
 #include <QList>
-#include "plant.h"
-#include "peashooter.h"
+#include "twoPeashotter.h"
+#include "walnut.h"
+#include "jalapeno.h"
+#include "plumMine.h"
+#include "boomerang.h"
 
 extern Game* game;
 
@@ -70,20 +73,68 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
     QTimer * moveTimer = new QTimer();
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(movement_delay*1000);
+
+    //attack timer
+    attack_timer = new QTimer();
+    connect(attack_timer, &QTimer::timeout, this, &Zombie::attack);
 }
 
 void Zombie::move()
 {
     if(x() <= 117)
     {
-        delete this;
+        delete this; //for now //then we have to run a winning event
         return;
     }
 
     if(type == "astronaut" && health <= 100)
         time_between_attacks = movement_delay = 0.5;
 
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(int i = 0, n = colliding_items.size(); i < n; i++)   //for attack
+    {
+        if(typeid(*(colliding_items[i])) == typeid(PeaShooter) ||
+            typeid(*(colliding_items[i])) == typeid(TwoPeaShotter) ||
+            typeid(*(colliding_items[i])) == typeid(PlumMine) ||
+            typeid(*(colliding_items[i])) == typeid(Jalapeno) ||
+            typeid(*(colliding_items[i])) == typeid(Boomerang))
+        {
+            //sth to stop attacks //if the plants dies, the attack timerstop
+            enemy = dynamic_cast<Character*>(colliding_items[i]);
+            attack_timer->start(time_between_attacks*1000);
+            connect(enemy, &Character::obj_has_deleted, this, &Zombie::stop_timer);
+            return;
+        }
+        if(type == "tall" || typeid(*(colliding_items[i]))== typeid(Walnut))
+            break;
+    }
+
     setPos(x()-20,y());
+    if (x()+15<game->field[loc.first][loc.second]->xRange.first)  //update loc of zombie in field array
+    {
+        for (auto it = game->field[loc.first][loc.second]->characters.begin();
+             it != game->field[loc.first][loc.second]->characters.end(); ++it)
+        {
+            if ((*it)->id == this->id)
+            {
+                it = game->field[loc.first][loc.second]->characters.erase(it);
+                break;
+            }
+        }
+        loc.second--;
+        game->field[loc.first][loc.second]->characters.push_back(this);
+    }
+
+}
+
+void Zombie::attack()
+{
+    enemy->decrease_health(attack_power);
+}
+
+void Zombie::stop_timer()
+{
+    attack_timer->stop();
 }
 
 

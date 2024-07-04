@@ -6,15 +6,15 @@
 
 extern Game* game;
 
-Bullet::Bullet(QPair<int,int> _plantLoc, int _attackPower,bool _forBoomerang)
+Bullet::Bullet(int _attackPower,bool _forBoomerang)
 {
-    plantLoc = _plantLoc;
     attack_power = _attackPower;
     forBoomerang = _forBoomerang;
 
     setPixmap(QPixmap(":/other/images/bullet.png"));
     setScale(0.01);
 
+    //set signal and slot to move bullet
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(15);
@@ -22,8 +22,7 @@ Bullet::Bullet(QPair<int,int> _plantLoc, int _attackPower,bool _forBoomerang)
 
 void Bullet::move()
 {
-    //if bullet collidese with enemy, destroy both
-    QList<QGraphicsItem*> colloding_items = collidingItems();
+    QList<QGraphicsItem*> colloding_items = collidingItems();   //handle decrease health for zombies if bullet hits a zombie
     for(int i=0,n=colloding_items.size(); i<n;i++)
     {
         if(typeid(*(colloding_items[i])) == typeid(Zombie))

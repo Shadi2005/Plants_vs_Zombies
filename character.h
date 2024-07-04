@@ -19,6 +19,8 @@ public:
     QPair<int,int> loc;
     static int id_generator;
     const int id;
+signals:
+    void obj_has_deleted();
 };
 
 #endif // CHARACTER_H

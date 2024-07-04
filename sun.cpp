@@ -7,7 +7,7 @@ extern Game* game;
 
 Sun::Sun()
 {
-    //locating
+    //locating on a random position in a zombie field
     int x, y;
     int row, column;
     while(1)
@@ -35,7 +35,7 @@ Sun::Sun()
 
 void Sun::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    emit clicked();
+    emit clicked();     //emit clicked signal to get sun and decrease count of suncontainer
     delete this;
 }
 

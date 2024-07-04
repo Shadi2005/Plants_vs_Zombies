@@ -21,15 +21,15 @@ int SunContainer::get_sun_count()
 void SunContainer::increase()
 {
     count += 25;
-    setPlainText(QString("Sun: ") + QString :: number(count));
+    setPlainText(QString("Sun: ") + QString :: number(count));  //updating the sun container text on the screen
 }
 
 void SunContainer::decrease(int type, int price)
 {
-    if(price > count)
+    if(price > count)   //check if the user can afford the plant
         return;
     count -= price;
     game->ground->set_newPlantType(type);
-    setPlainText(QString("Sun: ") + QString :: number(count));
+    setPlainText(QString("Sun: ") + QString :: number(count));   //updating the sun container text on the screen
 }
 

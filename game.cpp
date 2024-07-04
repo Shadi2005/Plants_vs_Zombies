@@ -7,8 +7,10 @@
 
 extern BrainContainer* brainContainer;
 extern SunContainer* sunContainer;
+
 Game::Game()
 {
+    //setting the range of each square
     for(int row=0; row<6; row++)
     {
         for(int column=0; column<12; column++)
@@ -25,6 +27,7 @@ Game::Game()
     ground = new Ground();
     scene->addItem(ground);
 
+    //scene adjustments
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -49,7 +52,7 @@ Game::Game()
     sunTimer->start(6000);
 
 
-    //set cards
+    //setting the plant and zombie cards
     int location = 0;
     PlantCards* plantcards[6];
     for(int i=0; i<6; i++)

@@ -17,6 +17,10 @@ public:
     QTimer* attack_timer;
 private slots:
     void move();
+    void attack();
+    void stop_timer();
 };
+
+
 
 #endif // ZOMBIE_H

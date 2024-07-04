@@ -13,11 +13,11 @@ PlumMine::PlumMine(QPair<int,int> _loc) : Plant(_loc)
     setPixmap(QPixmap(":/plant/images/transparent plants/plum mine_transparent.png"));
     setScale(0.8);
 
-    for(int i=loc.first-1; i<=loc.first+1; i++)
+    for(int i=loc.first-1; i<=loc.first+1; i++)   //to decrease health zombies whithin two squares of plum mine
     {
         for(int j=loc.second-1; j<=loc.second+1; j++)
         {
-            for(auto character:game->field[loc.first][i]->characters)
+            for(auto character:game->field[i][j]->characters)
             {
                 if(typeid(*character) == typeid(Zombie))
                 {
@@ -27,5 +27,5 @@ PlumMine::PlumMine(QPair<int,int> _loc) : Plant(_loc)
             }
         }
     }
-    QTimer::singleShot(2000, this, &QObject::deleteLater);
+    QTimer::singleShot(2000, this, &QObject::deleteLater);  //delete plum mine after 2 second
 }

@@ -14,7 +14,7 @@ Jalapeno::Jalapeno(QPair<int,int> _loc) : Plant(_loc)
     setPixmap(QPixmap(":/plant/images/transparent plants/jalapino_transparent.png"));
     setScale(0.8);
 
-    for(int i=loc.second;i<12;i++)
+    for(int i=loc.second;i<12;i++)  //decrease health of zombies in the same row as jalapeno
     {
         for(auto character:game->field[loc.first][i]->characters)
         {
@@ -25,7 +25,7 @@ Jalapeno::Jalapeno(QPair<int,int> _loc) : Plant(_loc)
             }
         }
     }
-    QTimer::singleShot(2000, this, &QObject::deleteLater);
+    QTimer::singleShot(2000, this, &QObject::deleteLater);  //delete jalapeno after 2 second
 }
 
 

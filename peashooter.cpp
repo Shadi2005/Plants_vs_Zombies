@@ -17,23 +17,23 @@ PeaShooter::PeaShooter(QPair<int,int> _loc) : Plant(_loc)
     setScale(0.9);
     game->field[loc.first][loc.second]->characters.push_back(this);
 
-    QTimer* checkTimer = new QTimer();
+    QTimer* checkTimer = new QTimer();   //set signal and slot to check row has zombie
     checkTimer->setInterval(500);
     connect(checkTimer, &QTimer::timeout, this, &PeaShooter::checkHasZambie);
     checkTimer->start();
 
-    attackTimer = new QTimer();
+    attackTimer = new QTimer();   //set signal and slot to attack
     connect(attackTimer, &QTimer::timeout, this, &PeaShooter::attack);
 }
 
 void PeaShooter::attack()
 {
-    Bullet* bullet = new Bullet(loc,attack_power);
+    Bullet* bullet = new Bullet(attack_power);  //to create bullet and add it to screen
     bullet->setPos(x()+30,y()+15);
     scene()->addItem(bullet);
 }
 
-void PeaShooter::checkHasZambie()
+void PeaShooter::checkHasZambie() //
 {
     for(int i=loc.second;i<12;i++)
     {
