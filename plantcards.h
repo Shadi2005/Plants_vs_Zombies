@@ -15,7 +15,7 @@ public:
     PlantCards(int _type);
     using QGraphicsPixmapItem::QGraphicsPixmapItem;
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);  //to select card and add it to ground
 signals:
     void clicked(int type, int price);
 };

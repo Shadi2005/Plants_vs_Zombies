@@ -38,8 +38,8 @@ void Ground::mousePressEvent(QGraphicsSceneMouseEvent *event)
     }
     int x = event->pos().x();
     int y = event->pos().y();
-    int row, column;
-
+    int row , column;
+    row = column = -1;
     for(int i=0; i<6; i++)
     {
         if(game->field[i][0]->yRange.first<= y && game->field[i][0]->yRange.second>=y)
@@ -48,13 +48,17 @@ void Ground::mousePressEvent(QGraphicsSceneMouseEvent *event)
             break;
         }
     }
-    for(int i=0; i<12; i++)
+    for(int i=0; i<6; i++)
     {
         if(game->field[row][i]->xRange.first<= x && game->field[row][i]->xRange.second>=x)
         {
             column = i;
             break;
         }
+    }
+    if(row == -1 || column == -1)
+    {
+        return;
     }
     if(!game->field[row][column]->characters.isEmpty())
     {
@@ -100,6 +104,7 @@ void Ground::spawn_brain()
     scene()->addItem(brain);
 
     connect(brain, SIGNAL(clicked()), brainContainer, SLOT(increase()));
+    //if the user clicks on the brain, the brain container increases
 }
 
 void Ground::spawn_sun()
@@ -108,6 +113,7 @@ void Ground::spawn_sun()
     scene()->addItem(sun);
 
     connect(sun, SIGNAL(clicked()), sunContainer, SLOT(increase()));
+    //if the user clicks on the brain, the brain container increases
 }
 
 void Ground::spawn_zombie(int type)

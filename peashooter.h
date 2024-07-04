@@ -6,9 +6,12 @@
 
 class PeaShooter : public Plant
 {
-    QTimer* attackTimer;
 public:
     PeaShooter(QPair<int,int> _loc);
+    QTimer* attackTimer;
+private slots:
+    void attack();
+    void checkHasZambie();
 };
 
 #endif // PEASHOOTER_H

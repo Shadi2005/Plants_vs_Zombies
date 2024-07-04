@@ -18,7 +18,7 @@ public:
 
     QPair<int,int> loc;
     static int id_generator;
-    int id;
+    const int id;
 signals:
     void obj_has_deleted();
 };
