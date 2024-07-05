@@ -17,6 +17,7 @@ SOURCES += \
     game.cpp \
     ground.cpp \
     jalapeno.cpp \
+    login.cpp \
     main.cpp \
     peashooter.cpp \
     plant.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     game.h \
     ground.h \
     jalapeno.h \
+    login.h \
     peashooter.h \
     plant.h \
     plantcards.h \
@@ -56,6 +58,7 @@ HEADERS += \
     zombiecards.h
 
 FORMS += \
+    login.ui \
     signup.ui
 
 # Default rules for deployment.

@@ -1,5 +1,6 @@
 #include "signup.h"
 #include "ui_signup.h"
+#include "login.h"
 #include <QString>
 #include <QFile>
 #include <QJsonDocument>
@@ -96,5 +97,14 @@ void SignUp::on_pushButton_clicked()
     else
         qDebug() << "file2 failed to open!";
 
+}
+
+
+void SignUp::on_pushButton_2_clicked()
+{
+    LogIn log_in_page;
+    log_in_page.setModal(true);
+    this->close();
+    log_in_page.exec();
 }
 
