@@ -22,10 +22,12 @@ SOURCES += \
     plant.cpp \
     plantcards.cpp \
     plumMine.cpp \
+    signup.cpp \
     square.cpp \
     sun.cpp \
     suncontainer.cpp \
     twoPeashotter.cpp \
+    userinfo.cpp \
     walnut.cpp \
     zombie.cpp \
     zombiecards.cpp
@@ -43,15 +45,18 @@ HEADERS += \
     plant.h \
     plantcards.h \
     plumMine.h \
+    signup.h \
     square.h \
     sun.h \
     suncontainer.h \
     twoPeashotter.h \
+    userinfo.h \
     walnut.h \
     zombie.h \
     zombiecards.h
 
-FORMS +=
+FORMS += \
+    signup.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
