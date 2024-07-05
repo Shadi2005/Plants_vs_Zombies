@@ -28,7 +28,7 @@ Boomerang::Boomerang(QPair<int,int> _loc) : Plant(_loc)
 void Boomerang::attack()
 {
     //create bullet what boomerang should throw and add it to screen
-    Bullet* bullet = new Bullet(loc,attack_power,true);
+    Bullet* bullet = new Bullet(attack_power,true);
     bullet->setPos(x()+30,y()+15);
     scene()->addItem(bullet);
 }

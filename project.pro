@@ -13,7 +13,9 @@ SOURCES += \
     brain.cpp \
     braincontainer.cpp \
     bullet.cpp \
+    changepass.cpp \
     character.cpp \
+    forgetpass.cpp \
     game.cpp \
     ground.cpp \
     jalapeno.cpp \
@@ -38,7 +40,9 @@ HEADERS += \
     brain.h \
     braincontainer.h \
     bullet.h \
+    changepass.h \
     character.h \
+    forgetpass.h \
     game.h \
     ground.h \
     jalapeno.h \
@@ -58,6 +62,8 @@ HEADERS += \
     zombiecards.h
 
 FORMS += \
+    changepass.ui \
+    forgetpass.ui \
     login.ui \
     signup.ui
 

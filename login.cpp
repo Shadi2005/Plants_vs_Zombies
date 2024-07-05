@@ -8,6 +8,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include "forgetpass.h"
 using namespace std;
 
 LogIn::LogIn(QWidget *parent)
@@ -72,6 +73,11 @@ void LogIn::on_pushButton_clicked()
     }
 }
 
-
-
+void LogIn::on_pushButton_2_clicked()
+{
+    ForgetPass forget_pass_page;
+    forget_pass_page.setModal(true);
+    this->close();
+    forget_pass_page.exec();
+}
 
