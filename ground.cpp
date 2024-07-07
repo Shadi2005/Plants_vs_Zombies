@@ -3,9 +3,7 @@
 #include <QPoint>
 #include "brain.h"
 #include <QGraphicsScene>
-#include "braincontainer.h"
 #include "sun.h"
-#include "suncontainer.h"
 #include "zombie.h"
 #include "game.h"
 #include "twoPeashotter.h"
@@ -14,15 +12,12 @@
 #include "plumMine.h"
 #include "walnut.h"
 
-extern BrainContainer* brainContainer;
-extern SunContainer* sunContainer;
 extern Game* game;
 
 Ground::Ground()
 {
     newPlantType = 0;
     setPixmap(QPixmap(":/other/images/field.png"));
-    setPos(0,100);
 }
 
 void Ground::set_newPlantType(int _type)
@@ -30,7 +25,7 @@ void Ground::set_newPlantType(int _type)
     newPlantType = _type;
 }
 
-void Ground::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void Ground::mousePressEvent(QGraphicsSceneMouseEvent *event)  //to select location of selected plant
 {
     if(newPlantType == 0)
     {
@@ -103,7 +98,7 @@ void Ground::spawn_brain()
     Brain * brain = new Brain();
     scene()->addItem(brain);
 
-    connect(brain, SIGNAL(clicked()), brainContainer, SLOT(increase()));
+    connect(brain, SIGNAL(clicked()), game->brainContainer, SLOT(increase()));
     //if the user clicks on the brain, the brain container increases
 }
 
@@ -112,7 +107,7 @@ void Ground::spawn_sun()
     Sun* sun = new Sun();
     scene()->addItem(sun);
 
-    connect(sun, SIGNAL(clicked()), sunContainer, SLOT(increase()));
+    connect(sun, SIGNAL(clicked()), game->sunContainer, SLOT(increase()));
     //if the user clicks on the brain, the brain container increases
 }
 

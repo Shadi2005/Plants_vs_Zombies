@@ -1,12 +1,11 @@
 #ifndef BOOMERANG_H
 #define BOOMERANG_H
-#include "plant.h"
+#include "peashooter.h"
 
-class Boomerang : public Plant
+class Boomerang : public PeaShooter
 {
 public:
     Boomerang(QPair<int,int> _loc);
-    QTimer* attackTimer;
 private slots:
     void attack();
     void checkHasZambie();

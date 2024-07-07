@@ -13,59 +13,49 @@ SOURCES += \
     brain.cpp \
     braincontainer.cpp \
     bullet.cpp \
-    changepass.cpp \
     character.cpp \
-    forgetpass.cpp \
     game.cpp \
     ground.cpp \
     jalapeno.cpp \
-    login.cpp \
     main.cpp \
     peashooter.cpp \
     plant.cpp \
     plantcards.cpp \
+    plantgame.cpp \
     plumMine.cpp \
-    signup.cpp \
     square.cpp \
     sun.cpp \
     suncontainer.cpp \
     twoPeashotter.cpp \
-    userinfo.cpp \
     walnut.cpp \
     zombie.cpp \
-    zombiecards.cpp
+    zombiecards.cpp \
+    zombiegame.cpp
 
 HEADERS += \
     boomerang.h \
     brain.h \
     braincontainer.h \
     bullet.h \
-    changepass.h \
     character.h \
-    forgetpass.h \
     game.h \
     ground.h \
     jalapeno.h \
-    login.h \
     peashooter.h \
     plant.h \
     plantcards.h \
+    plantgame.h \
     plumMine.h \
-    signup.h \
     square.h \
     sun.h \
     suncontainer.h \
     twoPeashotter.h \
-    userinfo.h \
     walnut.h \
     zombie.h \
-    zombiecards.h
+    zombiecards.h \
+    zombiegame.h
 
-FORMS += \
-    changepass.ui \
-    forgetpass.ui \
-    login.ui \
-    signup.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

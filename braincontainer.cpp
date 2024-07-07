@@ -1,9 +1,12 @@
 #include "braincontainer.h"
 #include <QFont>
+#include "game.h"
+
+extern Game* game;
 
 BrainContainer::BrainContainer(QGraphicsTextItem *parent)
 {
-    count = 10000;
+    count = 0;
     setPlainText(QString("Brain: ") + QString :: number(count));
     setDefaultTextColor(Qt::green);
     setFont(QFont("times", 16));
@@ -19,6 +22,10 @@ void BrainContainer::increase()
 {
     count += 25;
     setPlainText(QString("Brain: ") + QString :: number(count));     //updating the brain container text on the screen
+    for(int i=0; i<6; i++)
+    {
+        game->zombieCards[i]->changeImage(count);
+    }
 }
 
 void BrainContainer::decrease(int type, int price)
@@ -28,6 +35,10 @@ void BrainContainer::decrease(int type, int price)
         return;
     }
     count -= price;
+    for(int i=0; i<6; i++)
+    {
+        game->zombieCards[i]->changeImage(count);
+    }
     emit sendZombieType(type);
     setPlainText(QString("Brain: ") + QString :: number(count));    //updating the brain container text on the screen
 }
