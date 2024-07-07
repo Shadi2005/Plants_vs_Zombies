@@ -12,6 +12,12 @@
         <file>images/transparent zombies/purple hair zombie_transparent.png</file>
         <file>images/transparent zombies/regular zombie_transparent.png</file>
         <file>images/transparent zombies/tall zombie_transparent.png</file>
+        <file>images/zombies/astronaut zombie grey.jpg</file>
+        <file>images/zombies/Bucket head zombie grey.jpg</file>
+        <file>images/zombies/leaf hair zombie grey.jpg</file>
+        <file>images/zombies/purple hair zombie grey.jpg</file>
+        <file>images/zombies/regular zombie grey.jpg</file>
+        <file>images/zombies/tall zombie grey.jpg</file>
     </qresource>
     <qresource prefix="/plant">
         <file>images/plants/boomerang.jpg</file>
@@ -26,6 +32,12 @@
         <file>images/transparent plants/plum mine_transparent.png</file>
         <file>images/transparent plants/two_peashooter_transparent.png</file>
         <file>images/transparent plants/walnut_transparent.png</file>
+        <file>images/plants/boomerang grey.jpg</file>
+        <file>images/plants/jalapino grey.jpg</file>
+        <file>images/plants/pea shooter grey.jpg</file>
+        <file>images/plants/plum mine grey.jpg</file>
+        <file>images/plants/two_peashooter grey.jpg</file>
+        <file>images/plants/walnut grey.jpg</file>
     </qresource>
     <qresource prefix="/other">
         <file>images/Brain.png</file>

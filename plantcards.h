@@ -11,8 +11,12 @@ class PlantCards : public QObject, public QGraphicsPixmapItem
 
     int type;
     int price;
+    QString pathImage;
+    QString pathGreyImage;
+    bool isGrey;
 public:
     PlantCards(int _type);
+    void changeImage(int sunCount);
     using QGraphicsPixmapItem::QGraphicsPixmapItem;
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);  //to select card and add it to ground

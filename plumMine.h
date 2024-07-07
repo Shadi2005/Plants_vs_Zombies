@@ -5,8 +5,10 @@
 
 class PlumMine : public Plant
 {
+    QGraphicsPixmapItem *redRec;
 public:
     PlumMine(QPair<int,int> _loc);
+    ~PlumMine();
 };
 
 #endif // PLUMMINE_H

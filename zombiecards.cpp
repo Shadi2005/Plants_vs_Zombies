@@ -3,36 +3,56 @@
 ZombieCards::ZombieCards(int _type)
 {
     type = _type;
-    QString path;
     switch(type)
     {
     case 1: //regular zombie
         price = 100;
-        path = ":/zambie/images/zombies/regular zombie.jpg";
+        pathImage = ":/zambie/images/zombies/regular zombie.jpg";
+        pathGreyImage = ":/zambie/images/zombies/regular zombie grey.jpg";
         break;
     case 2: //leaf head zombie
         price = 150;
-        path = ":/zambie/images/zombies/leaf hair zombie.jpg";
+        pathImage = ":/zambie/images/zombies/leaf hair zombie.jpg";
+        pathGreyImage = ":/zambie/images/zombies/leaf hair zombie grey.jpg";
         break;
     case 3: //bucket head zombie
         price = 200;
-        path = ":/zambie/images/zombies/Bucket head zombie.jpg";
+        pathImage = ":/zambie/images/zombies/Bucket head zombie.jpg";
+        pathGreyImage = ":/zambie/images/zombies/Bucket head zombie grey.jpg";
         break;
     case 4: //tall zombie
         price = 150;
-        path = ":/zambie/images/zombies/tall zombie.jpg";
+        pathImage = ":/zambie/images/zombies/tall zombie.jpg";
+        pathGreyImage = ":/zambie/images/zombies/tall zombie grey.jpg";
         break;
     case 5: //astronaut zombie
         price = 200;
-        path = ":/zambie/images/zombies/astronaut zombie.jpg";
+        pathImage = ":/zambie/images/zombies/astronaut zombie.jpg";
+        pathGreyImage = ":/zambie/images/zombies/astronaut zombie grey.jpg";
         break;
     case 6: //purple hair zombie
         price = 800;
-        path = ":/zambie/images/zombies/purple hair zombie.jpg";
+        pathImage = ":/zambie/images/zombies/purple hair zombie.jpg";
+        pathGreyImage = ":/zambie/images/zombies/purple hair zombie grey.jpg";
         break;
     }
-    setPixmap(QPixmap(path));
-    setScale(0.09);
+    isGrey = true;
+    setPixmap(QPixmap(pathGreyImage));
+    setScale(0.35);
+}
+
+void ZombieCards::changeImage(int brainCount)
+{
+    if(brainCount>=price && isGrey)
+    {
+        setPixmap(pathImage);
+        isGrey = false;
+    }
+    else if(brainCount<price && !isGrey)
+    {
+        setPixmap(pathGreyImage);
+        isGrey = true;
+    }
 }
 
 void ZombieCards::mousePressEvent(QGraphicsSceneMouseEvent *event)

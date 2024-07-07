@@ -9,8 +9,9 @@ class PeaShooter : public Plant
 public:
     PeaShooter(QPair<int,int> _loc);
     QTimer* attackTimer;
+    QTimer* checkTimer;
 private slots:
-    void attack();
+    virtual void attack();
     void checkHasZambie();
 };
 

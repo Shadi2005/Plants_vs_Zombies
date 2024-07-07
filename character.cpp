@@ -14,10 +14,9 @@ Character::Character(QPair<int,int> _loc, QWidget* parent):id(id_generator)
     //locating
     int x, y;
     x = game->field[loc.first][loc.second]->xRange.first;
-    y = game->field[loc.first][loc.second]->yRange.second;
-    setPos(x, y);
-    setScale(0.1);
-    setZValue(loc.first);
+    y = game->field[loc.first][loc.second]->yRange.first;
+    setPos(x-20, y+200);
+    setZValue(loc.first+1);
 }
 
 void Character::decrease_health(int attack_power)

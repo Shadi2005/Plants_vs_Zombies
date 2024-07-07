@@ -4,40 +4,61 @@
 PlantCards::PlantCards(int _type)
 {
     type = _type;
-    QString path;
 
     switch (type) {
     case 1:   //peashooter
-        path = ":/plant/images/plants/pea shooter.jpg";
+        pathImage = ":/plant/images/plants/pea shooter.jpg";
+        pathGreyImage = ":/plant/images/plants/pea shooter grey.jpg";
         price = 50;
         break;
     case 2:  //two_peashooter
-        path = ":/plant/images/plants/two_peashooter.jpg";
+        pathImage = ":/plant/images/plants/two_peashooter.jpg";
+        pathGreyImage = ":/plant/images/plants/two_peashooter grey.jpg";
         price = 100;
         break;
     case 3:  //walnut
-        path = ":/plant/images/plants/walnut.jpg";
+        pathImage = ":/plant/images/plants/walnut.jpg";
+        pathGreyImage = ":/plant/images/plants/walnut grey.jpg";
         price = 100;
         break;
     case 4:  //plum mine
-        path = ":/plant/images/plants/plum mine.jpg";
+        pathImage = ":/plant/images/plants/plum mine.jpg";
+        pathGreyImage = ":/plant/images/plants/plum mine grey.jpg";
         price = 175;
         break;
     case 5:  //jalapeno
-        path = ":/plant/images/plants/jalapino.jpg";
+        pathImage = ":/plant/images/plants/jalapino.jpg";
+        pathGreyImage = ":/plant/images/plants/jalapino grey.jpg";
         price = 150;
         break;
     case 6:  //boomerang
-        path = ":/plant/images/plants/boomerang.jpg";
+        pathImage = ":/plant/images/plants/boomerang.jpg";
+        pathGreyImage = ":/plant/images/plants/boomerang grey.jpg";
         price = 125;
         break;
     }
+    isGrey = true;
+    setPixmap(QPixmap(pathGreyImage));
+    setScale(0.35);
+}
 
-    setPixmap(QPixmap(path));
-    setScale(0.09);
+void PlantCards::changeImage(int sunCount)
+{
+    if(sunCount>=price && isGrey)
+    {
+        setPixmap(pathImage);
+        isGrey = false;
+    }
+    else if(sunCount<price && !isGrey)
+    {
+        setPixmap(pathGreyImage);
+        isGrey = true;
+    }
 }
 
 void PlantCards::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     emit clicked(type, price);
 }
+
+

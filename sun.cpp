@@ -1,6 +1,7 @@
 #include "sun.h"
 #include "game.h"
 #include <QTimer>
+#include <QDebug>
 #include <QGraphicsSceneMouseEvent>
 
 extern Game* game;
@@ -19,12 +20,12 @@ Sun::Sun()
         {
             x = game->field[row][column]->xRange.first;
             y = game->field[row][column]->yRange.first;
-            setPos(x+5, y+105);
+            setPos(x-10,y+210);
             break;
         }
     }
     setPixmap(QPixmap(":/other/images/sun.png"));
-    setScale(0.1);
+    setScale(0.7);
     setZValue(0);
 
     //make it disapear after some time

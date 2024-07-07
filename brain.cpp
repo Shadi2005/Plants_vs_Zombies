@@ -21,13 +21,13 @@ Brain::Brain()
             //set the image position to the right and top of the given square
             x = game->field[row][column]->xRange.first;
             y = game->field[row][column]->yRange.first;
-            setPos(x+15, y+115);
+            setPos(x-7, y+220);
             break;
         }
     }
 
     setPixmap(QPixmap(":/other/images/Brain.png")); //set brain picture
-    setScale(0.35);
+    setScale(0.7);
     setZValue(0);
 
     //make the brain disapear after some time

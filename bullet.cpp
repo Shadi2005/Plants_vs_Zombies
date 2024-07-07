@@ -12,12 +12,12 @@ Bullet::Bullet(int _attackPower,bool _forBoomerang)
     forBoomerang = _forBoomerang;
 
     setPixmap(QPixmap(":/other/images/bullet.png"));
-    setScale(0.01);
 
     //set signal and slot to move bullet
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(15);
+    timer->start(22);
+    setZValue(8);
 }
 
 void Bullet::move()
@@ -38,5 +38,10 @@ void Bullet::move()
     }
     //move bullet right
     setPos(x()+10,y());
+    if(x() >= 1290)
+    {
+        delete this;
+        return;
+    }
 }
 
