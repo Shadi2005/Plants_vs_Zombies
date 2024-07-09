@@ -58,29 +58,29 @@ void HomePage::on_start_clicked()
     this->close();
     start_game.exec();
 
-    if(socket->socket->waitForReadyRead(4000))
+    socket->socket->waitForReadyRead(4000);
+
+    QByteArray buffer;
+    buffer = socket->socket->readAll();
+
+    QJsonDocument receivedDoc = QJsonDocument::fromJson(buffer);
+    QJsonObject receivedJson = receivedDoc.object();
+
+    start_game.close();
+
+    game = new Game();
+
+    if(receivedJson["role"] == "zombie")
     {
-        QByteArray buffer;
-        buffer = socket->socket->readAll();
-
-        QJsonDocument receivedDoc = QJsonDocument::fromJson(buffer);
-        QJsonObject receivedJson = receivedDoc.object();
-
-        start_game.close();
-
-        game = new Game();
-
-        if(receivedJson["role"] == "zombie")
-        {
-            ZombieGame * zombieGame = new ZombieGame();
-            zombieGame->show();
-        }
-        else
-        {
-            PlantGame * plantGame = new PlantGame();
-            plantGame->show();
-        }
+        ZombieGame * zombieGame = new ZombieGame();
+        zombieGame->show();
     }
+    else
+    {
+        PlantGame * plantGame = new PlantGame();
+        plantGame->show();
+    }
+
 }
 
 

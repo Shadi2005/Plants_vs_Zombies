@@ -15,7 +15,5 @@ int main(int argc, char *argv[])
     setIP ip;
     ip.show();
 
-    delete socket;
-    delete userInfo;
     return a.exec();
 }

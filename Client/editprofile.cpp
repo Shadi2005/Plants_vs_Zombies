@@ -81,27 +81,27 @@ void EditProfile::on_save_clicked()
     message["password"] = temp.password;
     emit send_user_info(message);
 
-    if(socket->socket->waitForReadyRead(4000))
+    socket->socket->waitForReadyRead(4000);
+
+    QByteArray buffer;
+    buffer = socket->socket->readAll();
+
+    QJsonDocument receivedDoc = QJsonDocument::fromJson(buffer);
+    QJsonObject respond = receivedDoc.object();
+
+    if(respond["respond"] == "successful")
     {
-        QByteArray buffer;
-        buffer = socket->socket->readAll();
-
-        QJsonDocument receivedDoc = QJsonDocument::fromJson(buffer);
-        QJsonObject respond = receivedDoc.object();
-
-        if(respond["respond"] == "successful")
-        {
-            userInfo->name = respond["name"].toString();
-            userInfo->phone_number = respond["phone_number"].toString();
-            userInfo->email = respond["email"].toString();
-            userInfo->username = respond["username"].toString();
-            userInfo->password = respond["password"].toString();
-            QMessageBox :: information(this, "Profile Edit", "The changes in your profile is successfully updated!");
-            this->close();
-        }
-        else
-            QMessageBox :: critical(this, "Error", "There is already an account with this username. Please choose another username.");
+        userInfo->name = respond["name"].toString();
+        userInfo->phone_number = respond["phone_number"].toString();
+        userInfo->email = respond["email"].toString();
+        userInfo->username = respond["username"].toString();
+        userInfo->password = respond["password"].toString();
+        QMessageBox :: information(this, "Profile Edit", "The changes in your profile is successfully updated!");
+        this->close();
     }
+    else
+        QMessageBox :: critical(this, "Error", "There is already an account with this username. Please choose another username.");
+
 }
 
 
