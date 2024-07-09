@@ -1,4 +1,5 @@
 QT       += core gui
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,6 +24,7 @@ SOURCES += \
     plantcards.cpp \
     plantgame.cpp \
     plumMine.cpp \
+    socket.cpp \
     square.cpp \
     sun.cpp \
     suncontainer.cpp \
@@ -46,6 +48,7 @@ HEADERS += \
     plantcards.h \
     plantgame.h \
     plumMine.h \
+    socket.h \
     square.h \
     sun.h \
     suncontainer.h \

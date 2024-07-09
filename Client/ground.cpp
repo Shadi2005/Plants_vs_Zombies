@@ -1,8 +1,5 @@
 #include "ground.h"
-#include <QGraphicsSceneMouseEvent>
-#include <QPoint>
 #include "brain.h"
-#include <QGraphicsScene>
 #include "sun.h"
 #include "zombie.h"
 #include "game.h"
@@ -11,6 +8,9 @@
 #include "jalapeno.h"
 #include "plumMine.h"
 #include "walnut.h"
+#include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
+#include <QPoint>
 
 extern Game* game;
 
@@ -18,6 +18,9 @@ Ground::Ground()
 {
     newPlantType = 0;
     setPixmap(QPixmap(":/other/images/field.png"));
+
+    connect(this, &Ground::new_zombie_set, this, &Ground::new_zombie);
+    connect(this, &Ground::new_plant_set, this, &Ground::new_plant);
 }
 
 void Ground::set_newPlantType(int _type)
@@ -60,6 +63,60 @@ void Ground::mousePressEvent(QGraphicsSceneMouseEvent *event)  //to select locat
         return;
     }
 
+    emit new_plant_set(newPlantType, column, row);
+
+    QJsonObject message;
+    message["event"] = "new plant";
+    message["x"] = QString::number(column);
+    message["y"] = QString::number(row);
+    message["type"] = QString::number(newPlantType);
+
+    emit send_plant_info(message);
+
+    newPlantType = 0;
+}
+
+void Ground::spawn_brain()
+{
+    Brain * brain = new Brain();
+    scene()->addItem(brain);
+
+    connect(brain, SIGNAL(clicked()), game->brainContainer, SLOT(increase()));
+    //if the user clicks on the brain, the brain container increases
+}
+
+void Ground::spawn_sun()
+{
+    Sun* sun = new Sun();
+    scene()->addItem(sun);
+
+    connect(sun, SIGNAL(clicked()), game->sunContainer, SLOT(increase()));
+    //if the user clicks on the brain, the brain container increases
+}
+
+void Ground::spawn_zombie(int type)
+{
+    srand(time(0));
+    int row = rand() % 6;
+
+    emit new_zombie_set(type, row);
+
+    QJsonObject message;
+    message["event"] = "new zombie";
+    message["y"] = QString::number(row);
+    message["type"] = QString::number(type);
+
+    emit send_zombie_info(message);
+}
+
+void Ground::new_zombie(int type, int row)
+{
+    Zombie * zombie = new Zombie(type, {row, 11});
+    scene()->addItem(zombie);
+}
+
+void Ground::new_plant(int newPlantType, int column, int row)
+{
     if(newPlantType == 1)
     {
         PeaShooter* plant = new PeaShooter({row,column});
@@ -90,31 +147,4 @@ void Ground::mousePressEvent(QGraphicsSceneMouseEvent *event)  //to select locat
         Boomerang* plant = new Boomerang({row,column});
         scene()->addItem(plant);
     }
-    newPlantType = 0;
-}
-
-void Ground::spawn_brain()
-{
-    Brain * brain = new Brain();
-    scene()->addItem(brain);
-
-    connect(brain, SIGNAL(clicked()), game->brainContainer, SLOT(increase()));
-    //if the user clicks on the brain, the brain container increases
-}
-
-void Ground::spawn_sun()
-{
-    Sun* sun = new Sun();
-    scene()->addItem(sun);
-
-    connect(sun, SIGNAL(clicked()), game->sunContainer, SLOT(increase()));
-    //if the user clicks on the brain, the brain container increases
-}
-
-void Ground::spawn_zombie(int type)
-{
-    srand(time(0));
-    int row = rand() % 6;
-    Zombie * zombie = new Zombie(type, {row, 11});
-    scene()->addItem(zombie);
 }

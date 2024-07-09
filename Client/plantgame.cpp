@@ -1,10 +1,12 @@
 #include "plantgame.h"
 #include "plantcards.h"
 #include "game.h"
+#include "socket.h"
 #include <QGraphicsScene>
 #include <QTimer>
 
 extern Game* game;
+extern Socket * socket;
 
 PlantGame::PlantGame()
 {
@@ -40,4 +42,9 @@ PlantGame::PlantGame()
         connect(game->plantCards[i], SIGNAL(clicked(int,int)), game->sunContainer, SLOT(decrease(int,int)));
         location += 150;
     }
+
+    connect(game->ground, SIGNAL(send_zombie_info(QJsonObject)), socket, SLOT(send(QJsonObject)));
+    connect(socket, SIGNAL(new_zombie(int,int)), game->ground, SLOT(new_zombie(int,int)));
+    connect(game->ground, SIGNAL(send_plant_info(QJsonObject)), socket, SLOT(send(QJsonObject)));
+    connect(socket, SIGNAL(new_plant(int,int,int)), game->ground, SLOT(new_plant(int,int,int)));
 }

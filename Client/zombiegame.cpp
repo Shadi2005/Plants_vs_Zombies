@@ -1,8 +1,10 @@
 #include "zombiegame.h"
 #include "game.h"
+#include "socket.h"
 #include <QTimer>
 
 extern Game* game;
+extern Socket * socket;
 
 ZombieGame::ZombieGame()
 {
@@ -41,4 +43,9 @@ ZombieGame::ZombieGame()
         connect(game->zombieCards[i], SIGNAL(clicked(int,int)), game->brainContainer, SLOT(decrease(int,int)));
         location += 150;
     }
+
+    connect(game->ground, SIGNAL(send_zombie_info(QJsonObject)), socket, SLOT(send(QJsonObject)));
+    connect(socket, SIGNAL(new_zombie(int,int)), game->ground, SLOT(new_zombie(int,int)));
+    connect(game->ground, SIGNAL(send_plant_info(QJsonObject)), socket, SLOT(send(QJsonObject)));
+    connect(socket, SIGNAL(new_plant(int,int,int)), game->ground, SLOT(new_plant(int,int,int)));
 }
