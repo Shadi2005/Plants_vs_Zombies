@@ -1,30 +1,21 @@
 #include <QApplication>
-#include <QHostAddress>
-#include "signup.h"
-#include "game.h"
-#include "plantgame.h"
-#include "zombiegame.h"
 #include "socket.h"
+#include "setip.h"
+#include "userinfo.h"
 
-Game* game;
 Socket * socket;
+UserInfo * userInfo;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    game = new Game();
+    userInfo = new UserInfo;
 
-    QHostAddress addr;
-    addr.setAddress("127.0.0.1");
-    socket = new Socket(addr);
+    setIP ip;
+    ip.show();
 
-    PlantGame* plantGame = new PlantGame();
-    plantGame->show();
-
-    // ZombieGame* zombieGame = new ZombieGame();
-    // zombieGame->show();
-
-
+    delete socket;
+    delete userInfo;
     return a.exec();
 }

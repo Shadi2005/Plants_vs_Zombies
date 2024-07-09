@@ -1,5 +1,8 @@
 #include "changepass.h"
 #include "ui_changepass.h"
+#include "homepage.h"
+#include "socket.h"
+#include "userinfo.h"
 #include <QMessageBox>
 #include <regex>
 #include <QString>
@@ -7,14 +10,20 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+
 using namespace std;
 
-ChangePass::ChangePass(UserInfo _userinfo, QWidget *parent)
-    : QDialog(parent), userinfo(_userinfo)
+extern Socket * socket;
+extern UserInfo * userInfo;
+
+ChangePass::ChangePass(QWidget *parent)
+    : QDialog(parent)
     , ui(new Ui::ChangePass)
 {
     ui->setupUi(this);
     ui->Password->setEchoMode(QLineEdit::Password);
+
+    connect(this, &ChangePass::send_user_info, socket, &Socket::send);
 }
 
 ChangePass::~ChangePass()
@@ -28,7 +37,8 @@ void ChangePass::on_pushButton_clicked()
 
     //checking the validation of new password
     regex password_regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8}$");
-    if (!regex_match(new_pass.toStdString(), password_regex)) {
+    if (!regex_match(new_pass.toStdString(), password_regex))
+    {
         QMessageBox :: critical(this, "Error", "Invalid password!");
         return;
     }
@@ -38,33 +48,21 @@ void ChangePass::on_pushButton_clicked()
     new_pass = QString(bytes.toHex());
 
     //checking if it is actually a new password
-    if(userinfo.password == new_pass) {
+    if(userInfo->password == new_pass)
+    {
         QMessageBox :: critical(this, "Error", "Please choose a password other than your current password!");
         return;
     }
 
-    //reading from the file
-    QFile file("Authentation.json");
-    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
-        QMessageBox::critical(this, "Error", "Error in opening the file!");
-        return;
-    }
+    QJsonObject message;
+    message["event"] = "user information for change password";
+    message["username"] = userInfo->username;
+    message["password"] = new_pass;
+    emit send_user_info(message);
 
-    //updating the user's pass
-    QByteArray byte_array = file.readAll();
-    QJsonDocument json_document = QJsonDocument :: fromJson(byte_array);
-    QJsonObject json_object = json_document.object();
-    QJsonObject user = json_object[userinfo.username].toObject();
-    user["password"] = new_pass;
-
-    //save the changes back to the file
-    json_object[userinfo.username] = user;
-    json_document.setObject(json_object);
-    file.resize(0); // Clear the file content
-    file.write(json_document.toJson());
-    file.close();
-
-    QMessageBox :: information(this, "Change Password", "Your password is successfully changed!");
+    HomePage home_page;
+    home_page.setModal(true);
     this->close();
+    home_page.exec();
 }
 

@@ -14,21 +14,33 @@ SOURCES += \
     brain.cpp \
     braincontainer.cpp \
     bullet.cpp \
+    changepass.cpp \
     character.cpp \
+    editprofile.cpp \
+    forgetpass.cpp \
     game.cpp \
+    gamehistory.cpp \
+    gamehistorydisplay.cpp \
+    gameinfo.cpp \
     ground.cpp \
+    homepage.cpp \
     jalapeno.cpp \
+    login.cpp \
     main.cpp \
     peashooter.cpp \
     plant.cpp \
     plantcards.cpp \
     plantgame.cpp \
     plumMine.cpp \
+    setip.cpp \
+    signup.cpp \
     socket.cpp \
     square.cpp \
+    startgame.cpp \
     sun.cpp \
     suncontainer.cpp \
     twoPeashotter.cpp \
+    userinfo.cpp \
     walnut.cpp \
     zombie.cpp \
     zombiecards.cpp \
@@ -39,26 +51,48 @@ HEADERS += \
     brain.h \
     braincontainer.h \
     bullet.h \
+    changepass.h \
     character.h \
+    editprofile.h \
+    forgetpass.h \
     game.h \
+    gamehistory.h \
+    gamehistorydisplay.h \
+    gameinfo.h \
     ground.h \
+    homepage.h \
     jalapeno.h \
+    login.h \
     peashooter.h \
     plant.h \
     plantcards.h \
     plantgame.h \
     plumMine.h \
+    setip.h \
+    signup.h \
     socket.h \
     square.h \
+    startgame.h \
     sun.h \
     suncontainer.h \
     twoPeashotter.h \
+    userinfo.h \
     walnut.h \
     zombie.h \
     zombiecards.h \
     zombiegame.h
 
-FORMS +=
+FORMS += \
+    changepass.ui \
+    editprofile.ui \
+    forgetpass.ui \
+    gamehistory.ui \
+    gamehistorydisplay.ui \
+    homepage.ui \
+    login.ui \
+    setip.ui \
+    signup.ui \
+    startgame.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -66,4 +100,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    resources.qrc \
+    resources.qrc \
     resources.qrc
+
+DISTFILES += \
+    README.md \
+    project.pro.user

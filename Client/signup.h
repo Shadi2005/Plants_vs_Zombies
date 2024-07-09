@@ -1,30 +1,34 @@
 #ifndef SIGNUP_H
 #define SIGNUP_H
 
-#include <QMainWindow>
+#include <QDialog>
+#include <QJsonObject>
 #include "userinfo.h"
 
-QT_BEGIN_NAMESPACE
 namespace Ui {
 class SignUp;
 }
-QT_END_NAMESPACE
 
-class SignUp : public QMainWindow
+class SignUp : public QDialog
 {
     Q_OBJECT
 
 public:
-    SignUp(QWidget *parent = nullptr);
+    explicit SignUp(QWidget *parent = nullptr);
     ~SignUp();
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
+
+public slots:
+    void respond(QJsonObject);
+
+signals:
+    void send_user_info(QJsonObject);
 
 private:
     Ui::SignUp *ui;
-    UserInfo userinfo;
 };
+
 #endif // SIGNUP_H

@@ -2,6 +2,11 @@
 #define LOGIN_H
 
 #include <QDialog>
+#include <QString>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 #include "userinfo.h"
 
 namespace Ui {
@@ -18,12 +23,14 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
+    void respond(QJsonObject);
+
+signals:
+    void send_user_info(QJsonObject);
 
 private:
     Ui::LogIn *ui;
-    UserInfo userinfo;
 };
 
 #endif // LOGIN_H

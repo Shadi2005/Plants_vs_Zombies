@@ -2,7 +2,8 @@
 #define CHANGEPASS_H
 
 #include <QDialog>
-#include "userinfo.h"
+#include <QJsonObject>
+
 
 namespace Ui {
 class ChangePass;
@@ -13,15 +14,17 @@ class ChangePass : public QDialog
     Q_OBJECT
 
 public:
-    explicit ChangePass(UserInfo _userinfo, QWidget *parent = nullptr);
+    explicit ChangePass(QWidget *parent = nullptr);
     ~ChangePass();
 
 private slots:
     void on_pushButton_clicked();
 
+signals:
+    void send_user_info(QJsonObject);
+
 private:
     Ui::ChangePass *ui;
-    UserInfo userinfo;
 };
 
 #endif // CHANGEPASS_H

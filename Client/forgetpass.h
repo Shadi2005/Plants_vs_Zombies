@@ -2,7 +2,7 @@
 #define FORGETPASS_H
 
 #include <QDialog>
-#include "userinfo.h"
+#include <QJsonObject>
 
 namespace Ui {
 class ForgetPass;
@@ -18,10 +18,13 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void respond(QJsonObject);
+
+signals:
+    void send_user_info(QJsonObject);
 
 private:
     Ui::ForgetPass *ui;
-    UserInfo userinfo;
 };
 
 #endif // FORGETPASS_H
