@@ -11,11 +11,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     game = new Game();
 
-    // PlantGame* plantGame = new PlantGame();
-    // plantGame->show();
+    PlantGame* plantGame = new PlantGame();
+    plantGame->show();
 
-    // ZombieGame* zombieGame = new ZombieGame();
-    // zombieGame->show();
+    ZombieGame* zombieGame = new ZombieGame();
+    zombieGame->show();
 
 
     return a.exec();
