@@ -6,7 +6,7 @@
 #include "zombiegame.h"
 #include "plantgame.h"
 #include "game.h"
-#include "startgame.h"
+#include "waitingroom.h"
 #include <QMessageBox>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -53,10 +53,9 @@ void HomePage::on_start_clicked()
     message["event"] = "ready for start";
     emit ready_for_game(message);
 
-    StartGame start_game;
-    start_game.setModal(true);
     this->close();
-    start_game.exec();
+    WaitingRoom * waitingRoom = new WaitingRoom();
+    waitingRoom->show();
 
     socket->socket->waitForReadyRead(4000);
 
@@ -66,21 +65,30 @@ void HomePage::on_start_clicked()
     QJsonDocument receivedDoc = QJsonDocument::fromJson(buffer);
     QJsonObject receivedJson = receivedDoc.object();
 
-    start_game.close();
+    qDebug() << buffer;
 
     game = new Game();
 
     if(receivedJson["role"] == "zombie")
     {
+        waitingRoom->close();
         ZombieGame * zombieGame = new ZombieGame();
         zombieGame->show();
     }
-    else
+    else if(receivedJson["role"] == "plant")
     {
+        waitingRoom->close();
         PlantGame * plantGame = new PlantGame();
         plantGame->show();
     }
-
+    else
+    {
+        waitingRoom->close();
+        QMessageBox :: critical(this, "Error", "The room is timed out!");
+        HomePage home_page;
+        home_page.setModal(true);
+        home_page.exec();
+    }
 }
 
 

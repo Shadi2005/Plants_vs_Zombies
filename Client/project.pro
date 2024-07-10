@@ -36,11 +36,11 @@ SOURCES += \
     signup.cpp \
     socket.cpp \
     square.cpp \
-    startgame.cpp \
     sun.cpp \
     suncontainer.cpp \
     twoPeashotter.cpp \
     userinfo.cpp \
+    waitingroom.cpp \
     walnut.cpp \
     zombie.cpp \
     zombiecards.cpp \
@@ -72,11 +72,11 @@ HEADERS += \
     signup.h \
     socket.h \
     square.h \
-    startgame.h \
     sun.h \
     suncontainer.h \
     twoPeashotter.h \
     userinfo.h \
+    waitingroom.h \
     walnut.h \
     zombie.h \
     zombiecards.h \
@@ -91,8 +91,7 @@ FORMS += \
     homepage.ui \
     login.ui \
     setip.ui \
-    signup.ui \
-    startgame.ui
+    signup.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

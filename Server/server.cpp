@@ -129,6 +129,7 @@ void Server::discardSocket()
         qDebug() << "Client " << socket->socketDescriptor() << " is discarded!";
         reset_clients_info();
         socket_list.remove(*it);
+        opponent_ready = false;
     }
     socket->deleteLater();
 }
@@ -450,7 +451,7 @@ void Server::check_if_ready()
                 QJsonObject message;
                 message["event"] = "game can be started";
                 message["role"] = "zombie";
-                role++;
+                role--;
                 send(message, socket);
             }
             else
@@ -458,7 +459,7 @@ void Server::check_if_ready()
                 QJsonObject message;
                 message["event"] = "game can be started";
                 message["role"] = "plant";
-                role--;
+                role++;
                 send(message, socket);
             }
         }
@@ -475,6 +476,8 @@ void Server::send(QJsonObject obj, QTcpSocket* socket)
         {
             QJsonDocument doc(obj);
             QByteArray jsonData = doc.toJson();
+
+            qDebug() << obj;
 
             socket->write(jsonData);
             socket->flush();
