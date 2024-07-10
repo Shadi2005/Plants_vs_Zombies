@@ -36,6 +36,7 @@ SOURCES += \
     signup.cpp \
     socket.cpp \
     square.cpp \
+    sticker.cpp \
     sun.cpp \
     suncontainer.cpp \
     twoPeashotter.cpp \
@@ -72,6 +73,7 @@ HEADERS += \
     signup.h \
     socket.h \
     square.h \
+    sticker.h \
     sun.h \
     suncontainer.h \
     twoPeashotter.h \

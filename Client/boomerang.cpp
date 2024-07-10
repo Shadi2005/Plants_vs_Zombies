@@ -9,7 +9,6 @@ extern Game* game;
 
 Boomerang::Boomerang(QPair<int,int> _loc) : PeaShooter(_loc)
 {
-    health = 200;
     firingRate = 1;
     attack_power = 15;
     setPixmap(QPixmap(":/plant/images/transparent plants/boomrang_transparent.png"));

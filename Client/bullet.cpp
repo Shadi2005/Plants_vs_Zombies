@@ -3,6 +3,8 @@
 #include "zombie.h"
 #include <QList>
 #include "game.h"
+#include <algorithm>
+using namespace std;
 
 extern Game* game;
 
@@ -28,11 +30,15 @@ void Bullet::move()
         if(typeid(*(colloding_items[i])) == typeid(Zombie))
         {
             Zombie* zombie = dynamic_cast<Zombie*>(colloding_items[i]);
-            zombie->decrease_health(attack_power);
             if(forBoomerang == false)
             {
+                zombie->decrease_health(attack_power);
                 delete this;
                 return;
+            }
+            else
+            {
+                zombie->decrease_health(attack_power/2);
             }
         }
     }

@@ -19,7 +19,7 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
     {
     case 1: //regular zombie
         type = "regular";
-        health = 500;
+        maxHealth = health = 500;
         movement_delay = 1;
         attack_power = 25;
         time_between_attacks = 1;
@@ -29,7 +29,7 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
         break;
     case 2: //leaf head zombie
         type = "leaf_head";
-        health = 800;
+        maxHealth = health = 800;
         movement_delay = 1;
         attack_power = 25;
         time_between_attacks = 1;
@@ -39,7 +39,7 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
         break;
     case 3: //bucket head zombie
         type = "bucket_head";
-        health = 1950;
+        maxHealth = health = 1950;
         movement_delay = 2;
         attack_power = 50;
         time_between_attacks = 1;
@@ -49,7 +49,7 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
         break;
     case 4: //tall zombie
         type = "tall";
-        health = 500;
+        maxHealth = health = 500;
         movement_delay = 1;
         attack_power = 30;
         time_between_attacks = 1;
@@ -59,7 +59,7 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
         break;
     case 5: //astronaut zombie
         type = "astronaut";
-        health = 500;
+        maxHealth = health = 500;
         movement_delay = 1; //then 0.5
         attack_power = 20;
         time_between_attacks = 1; //then 0.5
@@ -69,7 +69,7 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
         break;
     case 6: //purple hair zombie
         type = "purple_head";
-        health = 800;
+        maxHealth = health = 800;
         movement_delay = 1;
         attack_power = 75;
         time_between_attacks = 0.5;
@@ -80,6 +80,7 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
     }
     setPixmap(QPixmap(path));
     game->field[loc.first][loc.second]->characters.push_back(this);
+    setProgressBar();
 
     //moving
     QTimer * moveTimer = new QTimer();
@@ -127,6 +128,7 @@ void Zombie::move()
     }
 
     setPos(x()-50,y());
+    progressBar->setPos(x(),y()-10);
     if (x()<game->field[loc.first][loc.second]->xRange.first-50)  //update loc of zombie in field array
     {
         for (auto it = game->field[loc.first][loc.second]->characters.begin();
