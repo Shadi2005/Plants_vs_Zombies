@@ -477,8 +477,6 @@ void Server::send(QJsonObject obj, QTcpSocket* socket)
             QJsonDocument doc(obj);
             QByteArray jsonData = doc.toJson();
 
-            qDebug() << obj;
-
             socket->write(jsonData);
             socket->flush();
         }

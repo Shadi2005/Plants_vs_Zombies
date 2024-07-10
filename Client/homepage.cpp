@@ -65,8 +65,6 @@ void HomePage::on_start_clicked()
     QJsonDocument receivedDoc = QJsonDocument::fromJson(buffer);
     QJsonObject receivedJson = receivedDoc.object();
 
-    qDebug() << buffer;
-
     game = new Game();
 
     if(receivedJson["role"] == "zombie")
@@ -89,6 +87,8 @@ void HomePage::on_start_clicked()
         home_page.setModal(true);
         home_page.exec();
     }
+
+
 }
 
 
