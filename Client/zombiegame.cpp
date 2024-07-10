@@ -63,6 +63,9 @@ ZombieGame::ZombieGame()
         scene->addWidget(stickers[i]);
         connect(stickers[i],SIGNAL(bottonClicked(QString)),this,SLOT(updateChatbox(QString)));
     }
+    connect(socket, SIGNAL(chat_box(QJsonObject)), this, SLOT(addSticker(QJsonObject)));
+    connect(this, SIGNAL(sendSticker(QJsonObject)), socket, SLOT(send(QJsonObject)));
+    connect(this, SIGNAL(addStickerSignal(QJsonObject)), this, SLOT(addSticker(QJsonObject)));
 
     //setting the plant and zombie cards
     int location = 0;
@@ -99,5 +102,15 @@ void ZombieGame::updateProgressBar()
 
 void ZombieGame::updateChatbox(QString text)
 {
-    game->chatBox->addItem(userInfo->username+" : " +text);
+    QJsonObject message;
+    message["event"] = "chat box";
+    message["username"] = userInfo->username;
+    message["sticker"] = text;
+    emit addStickerSignal(message);
+    emit sendSticker(message);
+}
+
+void ZombieGame::addSticker(QJsonObject obj)
+{
+    game->chatBox->addItem(obj["username"].toString() +" : " + obj["sticker"].toString());
 }

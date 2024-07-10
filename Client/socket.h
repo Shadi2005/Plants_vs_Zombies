@@ -22,6 +22,7 @@ signals:
     void sign_up(QJsonObject);
     void log_in(QJsonObject);
     void forget_password(QJsonObject);
+    void chat_box(QJsonObject);
 
 private slots:
     void readSocket();

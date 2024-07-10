@@ -2,6 +2,7 @@
 #define PLANTGAME_H
 
 #include <QGraphicsView>
+#include <QJsonObject>
 
 class PlantGame :public QGraphicsView
 {
@@ -13,6 +14,10 @@ public:
 private slots:
     void updateProgressBar();
     void updateChatbox(QString);
+    void addSticker(QJsonObject);
+signals:
+    void sendSticker(QJsonObject);
+    void addStickerSignal(QJsonObject);
 };
 
 #endif // PLANTGAME_H

@@ -65,6 +65,8 @@ void Socket::readSocket()
             emit log_in(receivedJson);
         else if(event == "forget password")
             emit forget_password(receivedJson);
+        else if(event == "chat box")
+            emit chat_box(receivedJson);
     }
 }
 
@@ -74,6 +76,8 @@ void Socket::discardSocket()
     socket=nullptr;
 
     qDebug() << "Disconnected";
+    QMessageBox :: critical(nullptr, "Error", "Server Down!");
+    exit(EXIT_FAILURE);
 }
 
 void Socket::send(QJsonObject message)

@@ -78,7 +78,7 @@ void Server::readSocket()
 
         QString event = receivedJson["event"].toString();
 
-        if(event == "new plant" || event == "new zombie")
+        if(event == "new plant" || event == "new zombie" || event == "chat box")
         {
             foreach(QTcpSocket* the_other_socket, socket_list)
             {
