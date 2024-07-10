@@ -6,9 +6,13 @@
 class PlantGame :public QGraphicsView
 {
     Q_OBJECT
+    QGraphicsRectItem* timeProgressBar;
 public:
     PlantGame();
     QGraphicsScene* scene;
+private slots:
+    void updateProgressBar();
+    void updateChatbox(QString);
 };
 
 #endif // PLANTGAME_H

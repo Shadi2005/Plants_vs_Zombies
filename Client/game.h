@@ -10,6 +10,7 @@
 #include "plantcards.h"
 #include "ground.h"
 #include "zombiecards.h"
+#include <QListWidget>
 
 class Game
 {
@@ -21,6 +22,7 @@ public:
     PlantCards* plantCards[6];
     ZombieCards* zombieCards[6];
     Ground* ground;
+    QListWidget* chatBox;
 
     void resetForSecondRound();
 

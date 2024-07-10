@@ -10,15 +10,16 @@ extern Game* game;
 
 PeaShooter::PeaShooter(QPair<int,int> _loc) : Plant(_loc)
 {
-    health = 200;
+    maxHealth = health = 200;
     firingRate = 1;
     attack_power = 15;
     setPixmap(QPixmap(":/plant/images/transparent plants/peashooter transparent.png"));
     setScale(1);
     setPos(x(),y()-15);
     game->field[loc.first][loc.second]->characters.push_back(this);
+    setProgressBar();
 
-    QTimer* checkTimer = new QTimer();   //set signal and slot to check row has zombie
+    checkTimer = new QTimer();   //set signal and slot to check row has zombie
     checkTimer->setInterval(500);
     connect(checkTimer, &QTimer::timeout, this, &PeaShooter::checkHasZambie);
     checkTimer->start();

@@ -10,8 +10,12 @@ class Character : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
 protected:
+    int maxHealth;
     int health;
     int attack_power;
+    QGraphicsRectItem* progressBar;
+
+    void setProgressBar();
 public:
     Character(QPair<int,int>,QWidget* parent = 0);
     void decrease_health(int attack_power);
