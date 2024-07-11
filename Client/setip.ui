@@ -6,47 +6,100 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>461</width>
-    <height>248</height>
+    <width>675</width>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>40</y>
-      <width>331</width>
-      <height>57</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Please enter the server IP :</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit"/>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>110</y>
+      <x>440</x>
+      <y>270</y>
       <width>83</width>
       <height>29</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Rockwell</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>230</y>
+      <width>329</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>47</red>
+          <green>76</green>
+          <blue>39</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>47</red>
+          <green>76</green>
+          <blue>39</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>47</red>
+          <green>76</green>
+          <blue>39</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="font">
+     <font>
+      <family>Rockwell</family>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>110</y>
+      <width>41</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -55,8 +108,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>461</width>
-     <height>25</height>
+     <width>675</width>
+     <height>19</height>
     </rect>
    </property>
   </widget>

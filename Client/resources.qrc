@@ -45,4 +45,7 @@
         <file>images/field.png</file>
         <file>images/sun.png</file>
     </qresource>
+    <qresource prefix="/pages">
+        <file>images/pages/set ip Background.jpg</file>
+    </qresource>
 </RCC>
