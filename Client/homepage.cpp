@@ -57,7 +57,7 @@ void HomePage::on_start_clicked()
     WaitingRoom * waitingRoom = new WaitingRoom();
     waitingRoom->show();
 
-    socket->socket->waitForReadyRead(4000);
+    socket->socket->waitForReadyRead(20000);
 
     QByteArray buffer;
     buffer = socket->socket->readAll();
