@@ -6,6 +6,7 @@
 #include <QJsonObject>
 #include <regex>
 #include <QFile>
+#include <QGraphicsDropShadowEffect>
 
 using namespace std;
 
@@ -18,7 +19,34 @@ EditProfile::EditProfile(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // ui->label_6->setPixmap(QPixmap(":/pages/images/pages/back2.jpg"));
+    // ui->label_6->setGeometry(0, 0, 720, 720);
+
+    setFixedSize(700,700);
+
     ui->save->setStyleSheet("QPushButton { background-color: green;}");
+    ui->pushButton_2->setStyleSheet("QPushButton { background-color: green;}");
+
+    QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect;
+    shadowEffect->setColor(Qt::black);
+    shadowEffect->setOffset(2, 2);
+    shadowEffect->setBlurRadius(7);
+
+    QPalette palette;
+    palette.setColor(QPalette::Base, QColor(154, 217, 77,150)); // Light blue
+
+    QList<QWidget*> allWidgets = this->findChildren<QWidget*>();
+
+    for (QWidget* widget : allWidgets) {
+        QLineEdit* lineEdit = qobject_cast<QLineEdit*>(widget);
+        if (lineEdit) {
+            lineEdit->setGeometry(175,400,350,50);
+            lineEdit->setPalette(palette);
+            lineEdit->setFrame(false);
+            lineEdit->setGraphicsEffect(shadowEffect);
+        }
+    }
+
     ui->name->setText(userInfo->name);
     ui->email->setText(userInfo->email);
     ui->username->setText(userInfo->username);

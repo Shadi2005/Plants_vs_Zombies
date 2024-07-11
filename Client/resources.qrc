@@ -47,5 +47,7 @@
     </qresource>
     <qresource prefix="/pages">
         <file>images/pages/set ip Background.jpg</file>
+        <file>images/pages/back2.jpg</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>
