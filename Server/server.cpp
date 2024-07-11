@@ -1,5 +1,6 @@
 #include "server.h"
 #include "ui_server.h"
+#include <QGraphicsDropShadowEffect>
 
 Server::Server(QWidget *parent)
     : QMainWindow(parent)
@@ -21,6 +22,29 @@ Server::Server(QWidget *parent)
         qDebug() << "Unable to start!";
         exit(EXIT_FAILURE);
     }
+
+    setFixedSize(700,700);
+
+    ui->label->setPixmap(QPixmap(":/image/set ip Background.jpg"));
+    ui->label->setGeometry(0, 0, 700, 700);
+
+    QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect;
+    shadowEffect->setColor(Qt::black);
+    shadowEffect->setOffset(2, 2);
+    shadowEffect->setBlurRadius(7);
+    ui->lineEdit->setGraphicsEffect(shadowEffect);
+
+    ui->lineEdit->setGeometry(175,400,350,50);
+    QPalette palette;
+    palette.setColor(QPalette::Base, QColor(154, 217, 77,150)); // Light green
+    ui->lineEdit->setPalette(palette);
+    ui->lineEdit->setFrame(false);
+    ui->lineEdit->setAlignment(Qt::AlignCenter);
+
+    QFont font;
+    font.setPointSize(24);
+    ui->lineEdit->setFont(font);
+    ui->lineEdit->setReadOnly(true);
 }
 
 void Server::print_IP()
@@ -31,6 +55,7 @@ void Server::print_IP()
     for (const QHostAddress &address : addresses) {
         if (address.protocol() == QAbstractSocket::IPv4Protocol && address != localhost) {
             qDebug() << "Local IP address: " << address.toString();
+            ui->lineEdit->setText(address.toString());
         }
     }
 }
