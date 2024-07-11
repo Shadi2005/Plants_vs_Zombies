@@ -33,7 +33,6 @@ ResultPage::~ResultPage()
 void ResultPage::next_action()
 {
     timer->stop();
-    this->close();
     if(game->first_round == false)
     {
         game->resetForSecondRound();
@@ -51,39 +50,39 @@ void ResultPage::next_action()
     }
     else
     {
-        QJsonObject game_info;
-        game_info["event"] = "send game information";
-        game_info["username"] = userInfo->username;
+        QJsonObject* game_info = new QJsonObject();
+        (*game_info)["event"] = "send game information";
+        (*game_info)["username"] = userInfo->username;
         if(game->game_info.is_zombie[0])
         {
-            game_info["role1"] = "zombie";
-            game_info["role2"] = "plant";
+            (*game_info)["role1"] = "zombie";
+            (*game_info)["role2"] = "plant";
         }
         else
         {
-            game_info["role1"] = "plant";
-            game_info["role2"] = "zombie";
+            (*game_info)["role1"] = "plant";
+            (*game_info)["role2"] = "zombie";
         }
         if(game->game_info.is_winner[0])
-            game_info["result1"] = "win";
+            (*game_info)["result1"] = "win";
         else
-            game_info["result1"] = "lose";
+            (*game_info)["result1"] = "lose";
         if(game->game_info.is_winner[1])
-            game_info["result2"] = "win";
+            (*game_info)["result2"] = "win";
         else
-            game_info["result2"] = "lose";
-        game_info["date"] = game->game_info.date.toString("yyyy-MM-dd");
-        game_info["time"] = game->game_info.time.toString("hh:mm:ss");
-        emit send_game_information(game_info);
+            (*game_info)["result2"] = "lose";
+        (*game_info)["date"] = game->game_info.date.toString("yyyy-MM-dd");
+        (*game_info)["time"] = game->game_info.time.toString("hh:mm:ss");
+        emit send_game_information(*game_info);
 
 
-        QJsonObject message;
-        message["event"] = "game over";
-        emit game_over(message);
+        QJsonObject* message = new QJsonObject();
+        (*message)["event"] = "game over";
+        emit game_over(*message);
 
-        HomePage home_page;
-        home_page.setModal(true);
-        home_page.exec();
+        HomePage* home_page = new HomePage();
+        home_page->setModal(true);
+        home_page->exec();
     }
-
+    this->close();
 }

@@ -139,10 +139,10 @@ void Zombie::move()
                 }
             }
         }
-        ResultPage result_page;
-        result_page.setModal(true);
-        result_page.exec();
-        // delete this; //for now //then we have to run a winning event
+        ResultPage* result_page = new ResultPage;
+        result_page->setModal(true);
+        result_page->exec();
+        delete this; //for now //then we have to run a winning event
         return;
     }
 
