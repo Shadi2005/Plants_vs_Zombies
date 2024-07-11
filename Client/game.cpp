@@ -11,6 +11,7 @@ Game::Game()
             field[row][column] = new Square(row,column);
         }
     }
+    first_round = false;
 }
 
 void Game::resetForSecondRound()
@@ -22,7 +23,7 @@ void Game::resetForSecondRound()
             field[i][j]->characters.clear();
         }
     }
-    delete brainContainer;
-    delete ground;
-    delete sunContainer;
+    // delete brainContainer;
+    // delete ground;
+    // delete sunContainer;
 }

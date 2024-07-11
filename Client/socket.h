@@ -23,6 +23,9 @@ signals:
     void log_in(QJsonObject);
     void forget_password(QJsonObject);
     void chat_box(QJsonObject);
+    void game_history(QJsonObject);
+    void edit_profile(QJsonObject);
+    void start_the_game(QJsonObject);
 
 private slots:
     void readSocket();

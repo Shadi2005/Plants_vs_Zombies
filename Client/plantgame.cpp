@@ -2,10 +2,11 @@
 #include "plantcards.h"
 #include "game.h"
 #include "socket.h"
-#include <QGraphicsScene>
-#include <QTimer>
 #include "userinfo.h"
 #include "sticker.h"
+#include "resultpage.h"
+#include <QTimer>
+#include <QGraphicsScene>
 
 extern Game* game;
 extern Socket * socket;
@@ -91,6 +92,13 @@ void PlantGame::updateProgressBar()
     if(count==210)
     {
         this->close();
+        if(game->first_round == false)
+            game->game_info.is_winner[0] = true;
+        else
+            game->game_info.is_winner[1] = true;
+        ResultPage result_page;
+        result_page.setModal(true);
+        result_page.exec();
     }
     else if(count>150)
     {

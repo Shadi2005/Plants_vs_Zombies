@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QVector>
 #include <QListWidgetItem>
+#include <QJsonObject>
 #include "gameinfo.h"
 
 namespace Ui {
@@ -20,6 +21,11 @@ public:
 
 private slots:
     void on_listWidget_itemClicked(QListWidgetItem *item);
+    void get_game_history(QJsonObject);
+
+signals:
+    void get_game_history_signal(QJsonObject);
+    void inner_class_signal(QJsonObject);
 
 private:
     Ui::GameHistory *ui;

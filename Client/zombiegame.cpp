@@ -5,6 +5,7 @@
 #include <QListWidget>
 #include "userinfo.h"
 #include "sticker.h"
+#include "resultpage.h"
 
 extern Game* game;
 extern Socket * socket;
@@ -91,6 +92,13 @@ void ZombieGame::updateProgressBar()
     if(count==210)
     {
         this->close();
+        if(game->first_round == false)
+            game->game_info.is_winner[0] = false;
+        else
+            game->game_info.is_winner[1] = false;
+        ResultPage result_page;
+        result_page.setModal(true);
+        result_page.exec();
     }
     else if(count>150)
     {

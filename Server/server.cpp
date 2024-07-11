@@ -112,6 +112,14 @@ void Server::readSocket()
                 edit_profile(receivedJson, socket);
             else if(event == "ready for start")
                 check_if_ready();
+            else if(event == "round 2")
+                send(receivedJson, socket);
+            else if(event == "send game information")
+                save_game_history(receivedJson);
+            else if(event == "get game history")
+                load_game_history(receivedJson, socket);
+            else if(event == "game over")
+                game_over(receivedJson);
         }
     }
     else
@@ -421,12 +429,63 @@ void Server::edit_profile(QJsonObject obj, QTcpSocket * socket)
 
 void Server::load_game_history(QJsonObject obj, QTcpSocket * socket)
 {
+    QJsonObject json_object;
 
+    QFile file(obj["username"].toString() + ".json");
+    if(file.open(QIODevice :: ReadOnly))
+    {
+        QByteArray byte_array = file.readAll();
+        QJsonDocument json_document = QJsonDocument :: fromJson(byte_array);
+        json_object = json_document.object();
+    }
+    else
+        qDebug() << "Error : File failed to be opened in save game history!";
+    file.close();
+
+    json_object["event"] = "game history";
+    send(json_object, socket);
 }
 
 void Server::save_game_history(QJsonObject obj)
 {
+    int game_id;
+    QJsonObject json_object;
 
+    QFile file(obj["username"].toString() + ".json");
+    if(file.open(QIODevice :: ReadOnly))
+    {
+        QByteArray byte_array = file.readAll();
+        QJsonDocument json_document = QJsonDocument :: fromJson(byte_array);
+        json_object = json_document.object();
+        game_id = json_object["id_gen"].toString().toInt();
+        qDebug() << game_id;
+        game_id++;
+        qDebug() << "in";
+    }
+    else
+    {
+        game_id = 1;
+    }
+    file.close();
+
+    qDebug() << game_id;
+    if(client1.first == obj["username"].toString())
+        obj["opponent_username"] = client2.first;
+    else
+        obj["opponent_username"] = client1.first;
+    json_object.insert(QString::number(game_id), obj);
+    json_object.insert("id_gen", QString::number(game_id));
+
+    QFile file2(obj["username"].toString() + ".json");
+    if(file2.open(QIODevice :: WriteOnly))
+    {
+        QJsonDocument json_document2(json_object);
+        file2.resize(0);
+        file2.write(json_document2.toJson());
+        file2.close();
+    }
+    else
+        qDebug() << "Error : File failed to be opened in save game history!";
 }
 
 bool Server::check(QString username)
@@ -477,6 +536,8 @@ void Server::send(QJsonObject obj, QTcpSocket* socket)
             QJsonDocument doc(obj);
             QByteArray jsonData = doc.toJson();
 
+            qDebug() << obj["event"].toString();
+
             socket->write(jsonData);
             socket->flush();
         }
@@ -512,4 +573,10 @@ void Server::reset_clients_info()
         client2.first = "";
         client2.second = 0;
     }
+}
+
+void Server::game_over(QJsonObject message)
+{
+    opponent_ready = false;
+    qDebug() << "game over ha ha ha";
 }

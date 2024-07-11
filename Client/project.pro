@@ -32,6 +32,7 @@ SOURCES += \
     plantcards.cpp \
     plantgame.cpp \
     plumMine.cpp \
+    resultpage.cpp \
     setip.cpp \
     signup.cpp \
     socket.cpp \
@@ -69,6 +70,7 @@ HEADERS += \
     plantcards.h \
     plantgame.h \
     plumMine.h \
+    resultpage.h \
     setip.h \
     signup.h \
     socket.h \
@@ -92,6 +94,7 @@ FORMS += \
     gamehistorydisplay.ui \
     homepage.ui \
     login.ui \
+    resultpage.ui \
     setip.ui \
     signup.ui
 

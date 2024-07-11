@@ -38,6 +38,7 @@ public:
     void check_if_ready();
     void send(QJsonObject, QTcpSocket*);
     void reset_clients_info();
+    void game_over(QJsonObject);
 
 private:
     Ui::Server *ui;

@@ -7,13 +7,12 @@ GameHistoryDisplay::GameHistoryDisplay(GameInfo game_info, QWidget *parent)
 {
     ui->setupUi(this);
     ui->date->setText(game_info.date.toString());
+    ui->time_4->setText(game_info.time.toString());
     ui->opponent->setText(game_info.opponent_username);
     ui->role1->setText(is_zombie(game_info.is_zombie[0]));
     ui->role2->setText(is_zombie(game_info.is_zombie[1]));
-    ui->role2->setText(is_zombie(game_info.is_zombie[2]));
     ui->res1->setText(is_winner(game_info.is_winner[0]));
-    ui->res3->setText(is_winner(game_info.is_winner[1]));
-    ui->res3->setText(is_winner(game_info.is_winner[2]));
+    ui->res2_2->setText(is_winner(game_info.is_winner[1]));
 }
 
 QString GameHistoryDisplay::is_zombie(bool is_zombie)

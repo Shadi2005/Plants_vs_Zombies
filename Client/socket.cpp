@@ -67,6 +67,12 @@ void Socket::readSocket()
             emit forget_password(receivedJson);
         else if(event == "chat box")
             emit chat_box(receivedJson);
+        else if(event == "game history")
+            qDebug() << "data received.";
+        else if(event == "edit profile")
+            emit edit_profile(receivedJson);
+        else if(event == "game can be started")
+            emit start_the_game(receivedJson);
     }
 }
 

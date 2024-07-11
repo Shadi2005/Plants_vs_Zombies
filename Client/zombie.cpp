@@ -8,8 +8,13 @@
 #include "jalapeno.h"
 #include "plumMine.h"
 #include "boomerang.h"
+#include "zombiegame.h"
+#include "plantgame.h"
+#include "resultpage.h"
 
 extern Game* game;
+extern ZombieGame * zombieGame;
+extern PlantGame * plantGame;
 
 Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
 {
@@ -96,7 +101,48 @@ void Zombie::move()
 {
     if(x() <= 120)
     {
-        delete this; //for now //then we have to run a winning event
+        if(!game->first_round)
+        {
+            if(game->game_info.is_zombie[0])
+            {
+                if(zombieGame)
+                {
+                    zombieGame->close();
+                    game->game_info.is_winner[0] = true;
+                }
+            }
+            else
+            {
+                if(plantGame)
+                {
+                    plantGame->close();
+                    game->game_info.is_winner[0] = false;
+                }
+            }
+        }
+        else
+        {
+            if(game->game_info.is_zombie[1])
+            {
+                if(zombieGame)
+                {
+                    zombieGame->close();
+                    game->game_info.is_winner[1] = true;
+                }
+            }
+            else
+            {
+                if(plantGame)
+                {
+                    plantGame->close();
+                    game->game_info.is_winner[1] = false;
+                }
+            }
+        }
+        ResultPage result_page;
+        result_page.setModal(true);
+        result_page.exec();
+        // delete this; //for now //then we have to run a winning event
         return;
     }
 

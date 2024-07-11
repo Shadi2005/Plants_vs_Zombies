@@ -19,9 +19,11 @@ public:
 
 private slots:
     void on_save_clicked();
+    void respond(QJsonObject);
 
 signals:
     void send_user_info(QJsonObject);
+    void inner_class_signal(QJsonObject);
 
 private:
     Ui::EditProfile *ui;

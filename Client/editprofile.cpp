@@ -26,6 +26,8 @@ EditProfile::EditProfile(QWidget *parent)
     ui->password->setEchoMode(QLineEdit::Password);
 
     connect(this, &EditProfile::send_user_info, socket, &Socket::send);
+    connect(socket, &Socket::edit_profile, this, &EditProfile::respond);
+    connect(this, &EditProfile::inner_class_signal, this, &EditProfile::respond);
 }
 
 EditProfile::~EditProfile()
@@ -89,6 +91,11 @@ void EditProfile::on_save_clicked()
     QJsonDocument receivedDoc = QJsonDocument::fromJson(buffer);
     QJsonObject respond = receivedDoc.object();
 
+    emit inner_class_signal(respond);
+}
+
+void EditProfile::respond(QJsonObject respond)
+{
     if(respond["respond"] == "successful")
     {
         userInfo->name = respond["name"].toString();
@@ -99,9 +106,8 @@ void EditProfile::on_save_clicked()
         QMessageBox :: information(this, "Profile Edit", "The changes in your profile is successfully updated!");
         this->close();
     }
-    else
+    else if(respond["respond"] == "There is already an account with this username. Please choose another username.")
         QMessageBox :: critical(this, "Error", "There is already an account with this username. Please choose another username.");
-
 }
 
 
