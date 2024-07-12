@@ -18,8 +18,45 @@ ResultPage::ResultPage(QWidget *parent)
     , ui(new Ui::ResultPage)
 {
     ui->setupUi(this);
+    setFixedSize(700,700);
     timer = new QTimer();
     timer->start(2000); //the amount of time I want the result page to be opened
+
+    if(game->first_round == false)
+    {
+        if(game->game_info.is_zombie[0])
+        {
+            if(game->game_info.is_winner[0])
+            {
+                ui->label->setPixmap(QPixmap(":/pages/images/pages/win zombie page.jpg"));
+                ui->label->setGeometry(0, 0, 700, 700);
+            }
+            else
+            {
+                ui->label->setPixmap(QPixmap(":/pages/images/pages/zombie lose page.jpg"));
+                ui->label->setGeometry(0, 0, 700, 700);
+            }
+        }
+        else
+        {
+            if(game->game_info.is_winner[0])
+            {
+                ui->label->setPixmap(QPixmap(":/pages/images/pages/win plant page.jpg"));
+                ui->label->setGeometry(0, 0, 700, 700);
+            }
+            else
+            {
+                ui->label->setPixmap(QPixmap(":/pages/images/pages/lose plant page.jpg"));
+                ui->label->setGeometry(0, 0, 700, 700);
+            }
+        }
+    }
+    else
+    {
+        if(game->game_info.is_winner[0] && game->game_info.is_winner[0]);
+        else if(!game->game_info.is_winner[0] && !game->game_info.is_winner[0]);
+        else;
+    }
     connect(timer, &QTimer::timeout, this, &ResultPage::next_action);
     connect(this, &ResultPage::send_game_information, socket, &Socket::send);
     connect(this, &ResultPage::game_over, socket, &Socket::send);

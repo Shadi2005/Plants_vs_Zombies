@@ -9,7 +9,7 @@ BrainContainer::BrainContainer(QGraphicsTextItem *parent)
     count = 0;
     setPlainText(QString("Brain: ") + QString :: number(count));
     setDefaultTextColor(Qt::green);
-    setFont(QFont("times", 16));
+    setFont(QFont("Rockwell", 16));
     setPos(800,0);
 }
 

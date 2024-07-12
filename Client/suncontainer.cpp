@@ -6,10 +6,11 @@ extern Game* game;
 
 SunContainer::SunContainer(QGraphicsTextItem *parent)
 {
-    count = 1000;
+    count = 0;
     setPlainText(QString("Sun: ") + QString :: number(count));
     setDefaultTextColor(Qt::red);
-    setFont(QFont("times", 16));
+    setFont(QFont("Rockwell", 16));
+    setPos(800,0);
 }
 
 int SunContainer::get_sun_count()

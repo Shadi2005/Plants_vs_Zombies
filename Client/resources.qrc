@@ -48,6 +48,9 @@
     <qresource prefix="/pages">
         <file>images/pages/set ip Background.jpg</file>
         <file>images/pages/back2.jpg</file>
+        <file>images/pages/zombie lose page.jpg</file>
+        <file>images/pages/lose plant page.jpg</file>
+        <file>images/pages/win plant page.jpg</file>
+        <file>images/pages/win zombie page.jpg</file>
     </qresource>
-    <qresource prefix="/"/>
 </RCC>

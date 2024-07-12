@@ -45,6 +45,13 @@ ZombieGame::ZombieGame()
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    QGraphicsTextItem* username = new QGraphicsTextItem();
+    username->setPlainText(QString("username: ") + (userInfo->username));
+    username->setDefaultTextColor(Qt::green);
+    username->setFont(QFont("Rockwell", 16));
+    username->setPos(1200,0);
+    scene->addItem(username);
+
     game->brainContainer = new BrainContainer();   //add brain container to scene
     scene->addItem(game->brainContainer);
     game->brainContainer->setPos(1000,0);

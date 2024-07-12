@@ -51,6 +51,13 @@ PlantGame::PlantGame()
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    QGraphicsTextItem* username = new QGraphicsTextItem();
+    username->setPlainText(QString("username: ") + (userInfo->username));
+    username->setDefaultTextColor(Qt::red);
+    username->setFont(QFont("Rockwell", 16));
+    username->setPos(1200,0);
+    scene->addItem(username);
+
     game->sunContainer = new SunContainer();
     scene->addItem(game->sunContainer);
     game->sunContainer->setPos(1000,0);
