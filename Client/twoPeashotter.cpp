@@ -15,7 +15,7 @@ TwoPeaShotter::TwoPeaShotter(QPair<int,int> _loc): PeaShooter(_loc)
 }
 
 void TwoPeaShotter::attack() //over load attack for two peashooter
-{   
+{
     for(int i=loc.second;i<12;i++)
     {
         for(auto character:game->field[loc.first][i]->characters)

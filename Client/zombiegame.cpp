@@ -4,7 +4,6 @@
 #include <QTimer>
 #include <QListWidget>
 #include "userinfo.h"
-#include "sticker.h"
 #include "resultpage.h"
 
 extern Game* game;
@@ -37,9 +36,9 @@ ZombieGame::ZombieGame()
     scene->addItem(progressBarBackGround);
     scene->addItem(timeProgressBar);
 
-    QTimer* timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(updateProgressBar()));
-    timer->start(1000);
+    progressbarTimer = new QTimer();
+    connect(progressbarTimer,SIGNAL(timeout()),this,SLOT(updateProgressBar()));
+    progressbarTimer->start(1000);
 
     //scene adjustments
     setScene(scene);
@@ -53,11 +52,10 @@ ZombieGame::ZombieGame()
     //spawn zombies
     connect(game->brainContainer, SIGNAL(sendZombieType(int)), game->ground, SLOT(spawn_zombie(int)));
 
-    QTimer* brainTimer = new QTimer();
+    brainTimer = new QTimer();
     QObject::connect(brainTimer, SIGNAL(timeout()),game->ground, SLOT(spawn_brain()));
     brainTimer->start(5000);
 
-    Sticker* stickers[24];
     for(int i=0; i<24;i++)
     {
         stickers[i] = new Sticker(i);
@@ -85,11 +83,33 @@ ZombieGame::ZombieGame()
     connect(socket, SIGNAL(new_plant(int,int,int)), game->ground, SLOT(new_plant(int,int,int)));
 }
 
+ZombieGame::~ZombieGame()
+{
+    QList<QGraphicsItem*> items = scene->items();
+    for (QGraphicsItem* item : items)
+    {
+        delete item;
+    }
+
+    scene->clear();
+    delete scene;
+
+    delete timeProgressBar;
+    delete progressbarTimer;
+    brainTimer->stop();
+    delete brainTimer;
+
+    for(int i=0; i<24;i++)
+    {
+        delete stickers[i];
+    }
+}
+
 void ZombieGame::updateProgressBar()
 {
     static int count = 0;
 
-    if(count==210)
+    if(count==120)
     {
         this->close();
         if(game->first_round == false)

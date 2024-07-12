@@ -88,13 +88,22 @@ Zombie::Zombie(int _type, QPair<int,int> _loc) : Character(_loc)
     setProgressBar();
 
     //moving
-    QTimer * moveTimer = new QTimer();
+    moveTimer = new QTimer();
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(movement_delay*1000);
 
     //attack timer
-    attack_timer = new QTimer();
-    connect(attack_timer, &QTimer::timeout, this, &Zombie::attack);
+    attackTimer = new QTimer();
+    connect(attackTimer, &QTimer::timeout, this, &Zombie::attack);
+}
+
+Zombie::~Zombie()
+{
+    attackTimer->stop();
+    delete attackTimer;
+    moveTimer->stop();
+    delete moveTimer;
+
 }
 
 void Zombie::move()
@@ -139,7 +148,8 @@ void Zombie::move()
                 }
             }
         }
-        ResultPage* result_page = new ResultPage;
+        ResultPage* result_page;
+        result_page = new ResultPage();
         result_page->setModal(true);
         result_page->exec();
         delete this; //for now //then we have to run a winning event
@@ -167,7 +177,7 @@ void Zombie::move()
         {
             //sth to stop attacks //if the plants dies, the attack timerstop
             enemy = dynamic_cast<Character*>(colliding_items[i]);
-            attack_timer->start(time_between_attacks*1000);
+            attackTimer->start(time_between_attacks*1000);
             connect(enemy, &Character::obj_has_deleted, this, &Zombie::stop_timer);
             return;
         }
@@ -202,7 +212,10 @@ void Zombie::attack()
 
 void Zombie::stop_timer()
 {
-    attack_timer->stop();
+    attackTimer->stop();
 }
+
+
+
 
 

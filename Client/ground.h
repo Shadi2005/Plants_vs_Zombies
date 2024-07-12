@@ -9,8 +9,10 @@ class Ground : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
     int newPlantType;
+
 public:
     Ground();
+    ~Ground();
     void set_newPlantType(int _Type);
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

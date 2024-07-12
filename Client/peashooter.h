@@ -8,6 +8,7 @@ class PeaShooter : public Plant
 {
 public:
     PeaShooter(QPair<int,int> _loc);
+    virtual ~PeaShooter();
     QTimer* attackTimer;
     QTimer* checkTimer;
 private slots:

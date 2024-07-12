@@ -11,10 +11,12 @@ protected:
     QString type;
     double movement_delay;
     double time_between_attacks;
+    QTimer* attackTimer;
+    QTimer * moveTimer;
 public:
     Zombie(int _type, QPair<int,int> _Loc);
+    ~Zombie();
     Character* enemy;
-    QTimer* attack_timer;
 private slots:
     void move();
     void attack();

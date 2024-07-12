@@ -2,11 +2,11 @@
 #include "plantcards.h"
 #include "game.h"
 #include "socket.h"
+#include <QGraphicsScene>
+#include <QTimer>
 #include "userinfo.h"
 #include "sticker.h"
 #include "resultpage.h"
-#include <QTimer>
-#include <QGraphicsScene>
 
 extern Game* game;
 extern Socket * socket;
@@ -14,6 +14,8 @@ extern UserInfo * userInfo;
 
 PlantGame::PlantGame()
 {
+    qDebug() << "plant";
+
     //creating the game main scene
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1500,800);
@@ -40,9 +42,9 @@ PlantGame::PlantGame()
     scene->addItem(progressBarBackGround);
     scene->addItem(timeProgressBar);
 
-    QTimer* timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(updateProgressBar()));
-    timer->start(1000);
+    progressbarTimer = new QTimer();
+    connect(progressbarTimer,SIGNAL(timeout()),this,SLOT(updateProgressBar()));
+    progressbarTimer->start(1000);
 
     //scene adjustments
     setScene(scene);
@@ -53,11 +55,10 @@ PlantGame::PlantGame()
     scene->addItem(game->sunContainer);
     game->sunContainer->setPos(1000,0);
 
-    QTimer* sunTimer = new QTimer();
+    sunTimer = new QTimer();
     QObject::connect(sunTimer, SIGNAL(timeout()),game->ground, SLOT(spawn_sun()));
     sunTimer->start(5000);
 
-    Sticker* stickers[24];
     for(int i=0; i<24;i++)
     {
         stickers[i] = new Sticker(i);
@@ -85,11 +86,34 @@ PlantGame::PlantGame()
     connect(socket, SIGNAL(new_plant(int,int,int)), game->ground, SLOT(new_plant(int,int,int)));
 }
 
+PlantGame::~PlantGame()
+{
+    QList<QGraphicsItem*> items = scene->items();
+    for (QGraphicsItem* item : items)
+    {
+        delete item;
+    }
+
+    scene->clear();
+    delete scene;
+
+    delete timeProgressBar;
+    delete progressbarTimer;
+    sunTimer->stop();
+    delete sunTimer;
+
+    for(int i=0; i<24;i++)
+    {
+        delete stickers[i];
+    }
+
+}
+
 void PlantGame::updateProgressBar()
 {
     static int count = 0;
 
-    if(count==210)
+    if(count==120)
     {
         this->close();
         if(game->first_round == false)
@@ -123,3 +147,4 @@ void PlantGame::addSticker(QJsonObject obj)
 {
     game->chatBox->addItem(obj["username"].toString() +" : " + obj["sticker"].toString());
 }
+

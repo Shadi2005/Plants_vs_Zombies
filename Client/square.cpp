@@ -63,3 +63,12 @@ Square::Square(int row, int column)
         break;
     }
 }
+
+Square::~Square()
+{
+    for(auto tmp:characters)
+    {
+        delete tmp;
+    }
+
+}

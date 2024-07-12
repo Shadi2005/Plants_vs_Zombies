@@ -10,6 +10,7 @@ protected:
     int firingRate;
 public:
     Plant(QPair<int,int> _loc);
+    ~Plant() = default;
 };
 
 #endif // PLANT_H

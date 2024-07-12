@@ -62,3 +62,4 @@ void PlantCards::mousePressEvent(QGraphicsSceneMouseEvent *event)
 }
 
 
+

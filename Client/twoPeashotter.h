@@ -7,6 +7,7 @@ class TwoPeaShotter : public PeaShooter
 {
 public:
     TwoPeaShotter(QPair<int,int> _loc);
+    ~TwoPeaShotter() = default;
 private slots:
     void attack();
 };

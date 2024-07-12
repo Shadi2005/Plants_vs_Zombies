@@ -14,6 +14,10 @@ Game::Game()
     first_round = false;
 }
 
+Game::~Game()
+{
+}
+
 void Game::resetForSecondRound()
 {
     for(int i=0; i<6; i++)
@@ -23,7 +27,4 @@ void Game::resetForSecondRound()
             field[i][j]->characters.clear();
         }
     }
-    // delete brainContainer;
-    // delete ground;
-    // delete sunContainer;
 }

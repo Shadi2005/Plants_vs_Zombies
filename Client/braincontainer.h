@@ -10,7 +10,9 @@ class BrainContainer : public QGraphicsTextItem
     Q_OBJECT
 public:
     BrainContainer(QGraphicsTextItem * parent = nullptr);
+    ~BrainContainer() = default;
     int getBrainCount();
+    void setCount(unsigned int newCount);
 
 private:
     unsigned int count;
@@ -24,3 +26,4 @@ signals:
 };
 
 #endif // BRAINCONTAINER_H
+

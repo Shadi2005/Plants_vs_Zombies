@@ -16,6 +16,7 @@ class PlantCards : public QObject, public QGraphicsPixmapItem
     bool isGrey;
 public:
     PlantCards(int _type);
+    ~PlantCards() = default;
     void changeImage(int sunCount);
     using QGraphicsPixmapItem::QGraphicsPixmapItem;
 protected:

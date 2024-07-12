@@ -9,6 +9,7 @@ class WaitingRoom : public QGraphicsView
     Q_OBJECT
 public:
     WaitingRoom();
+    ~WaitingRoom();
     QGraphicsScene* scene;
 };
 

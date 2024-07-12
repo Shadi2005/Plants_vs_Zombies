@@ -18,6 +18,11 @@ int BrainContainer::getBrainCount()
     return count;
 }
 
+void BrainContainer::setCount(unsigned int newCount)
+{
+    count = newCount;
+}
+
 void BrainContainer::increase()
 {
     count += 25;

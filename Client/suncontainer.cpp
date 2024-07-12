@@ -17,6 +17,11 @@ int SunContainer::get_sun_count()
     return count;
 }
 
+void SunContainer::setCount(unsigned int newCount)
+{
+    count = newCount;
+}
+
 void SunContainer::increase()
 {
     count += 25;

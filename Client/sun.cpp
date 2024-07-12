@@ -29,9 +29,15 @@ Sun::Sun()
     setZValue(0);
 
     //make it disapear after some time
-    QTimer * timer = new QTimer();
+    timer = new QTimer();
     QObject::connect(timer, SIGNAL(timeout()),this,SLOT(disapear()));
     timer->start(3000);
+}
+
+Sun::~Sun()
+{
+    timer->stop();
+    delete timer;
 }
 
 void Sun::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -44,5 +50,6 @@ void Sun::disapear()
 {
     delete this;
 }
+
 
 

@@ -31,6 +31,11 @@ Character::Character(QPair<int,int> _loc, QWidget* parent):id(id_generator)
     setZValue(loc.first+1);
 }
 
+Character::~Character()
+{
+    delete progressBar;
+}
+
 void Character::decrease_health(int attack_power)
 {
     health -= attack_power;     //decreasing the character health based on the enemy's power
@@ -52,3 +57,4 @@ void Character::decrease_health(int attack_power)
     }
     progressBar->setRect(0,0,(double)health*100/maxHealth,10);
 }
+

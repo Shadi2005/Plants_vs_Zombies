@@ -23,6 +23,16 @@ Ground::Ground()
     connect(this, &Ground::new_plant_set, this, &Ground::new_plant);
 }
 
+Ground::~Ground()
+{
+    QList<QGraphicsItem*> items = scene()->items();
+    for (QGraphicsItem* item : items)
+    {
+        delete item;
+    }
+    scene()->clear();
+}
+
 void Ground::set_newPlantType(int _type)
 {
     newPlantType = _type;

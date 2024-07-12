@@ -1,9 +1,8 @@
 #include "bullet.h"
-#include <QTimer>
 #include "zombie.h"
 #include <QList>
 #include "game.h"
-#include <algorithm>
+//#include <algorithm>
 using namespace std;
 
 extern Game* game;
@@ -16,10 +15,16 @@ Bullet::Bullet(int _attackPower,bool _forBoomerang)
     setPixmap(QPixmap(":/other/images/bullet.png"));
 
     //set signal and slot to move bullet
-    QTimer * timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(22);
+    attackTimer = new QTimer();
+    connect(attackTimer,SIGNAL(timeout()),this,SLOT(move()));
+    attackTimer->start(22);
     setZValue(8);
+}
+
+Bullet::~Bullet()
+{
+    attackTimer->stop();
+    delete attackTimer;
 }
 
 void Bullet::move()
@@ -50,4 +55,5 @@ void Bullet::move()
         return;
     }
 }
+
 

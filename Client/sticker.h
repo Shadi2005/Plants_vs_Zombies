@@ -9,6 +9,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
 public:
     Sticker(int type);
+    ~Sticker() = default;
 signals:
     void bottonClicked(QString);
 };

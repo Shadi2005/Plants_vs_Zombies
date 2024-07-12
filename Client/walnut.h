@@ -7,6 +7,7 @@ class Walnut : public Plant
 {
 public:
     Walnut(QPair<int,int> _loc);
+    ~Walnut() = default;
 };
 
 #endif // WALNUT_H

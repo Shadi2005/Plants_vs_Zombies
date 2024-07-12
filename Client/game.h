@@ -10,13 +10,14 @@
 #include "plantcards.h"
 #include "ground.h"
 #include "zombiecards.h"
-#include "gameinfo.h"
 #include <QListWidget>
+#include "gameinfo.h"
 
 class Game
 {
 public:
     Game();
+    ~Game();
     Square* field[6][12];
     BrainContainer* brainContainer;
     SunContainer* sunContainer;
@@ -27,8 +28,9 @@ public:
     GameInfo game_info;
     bool first_round;
 
-    void resetForSecondRound();
 
+    void resetForSecondRound();
 };
 
 #endif // GAME_H
+

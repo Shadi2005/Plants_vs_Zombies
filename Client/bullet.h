@@ -3,6 +3,7 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QPair>
+#include <QTimer>
 
 class Bullet : public QObject, public QGraphicsPixmapItem
 {
@@ -10,8 +11,10 @@ class Bullet : public QObject, public QGraphicsPixmapItem
 protected:
     int attack_power;
     bool forBoomerang;
+    QTimer* attackTimer;
 public:
     Bullet(int _attackPower, bool _forBoomerang = false);
+    ~Bullet();
 public slots:
     void move();
 };

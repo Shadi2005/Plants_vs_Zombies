@@ -9,6 +9,7 @@ class UserInfo
 {
 public:
     UserInfo();
+    ~UserInfo() = default;
     QString name, phone_number, email, username, password;
     void Hashing();
     bool is_empty();

@@ -1,7 +1,6 @@
 #include "brain.h"
 #include <time.h>
 #include "square.h"
-#include <QTimer>
 #include "game.h"
 
 extern Game* game;
@@ -31,9 +30,15 @@ Brain::Brain()
     setZValue(0);
 
     //make the brain disapear after some time
-    QTimer * timer = new QTimer();
+    timer = new QTimer();
     QObject::connect(timer, SIGNAL(timeout()),this,SLOT(disapear()));
     timer->start(3000);
+}
+
+Brain::~Brain()
+{
+    timer->stop();
+    delete timer;
 }
 
 void Brain::mousePressEvent(QGraphicsSceneMouseEvent *event)

@@ -9,6 +9,7 @@ class Square
 {
 public:
     Square(int row, int column);
+    ~Square();
 
     QVector<Character*> characters;
     QPair<int, int> yRange;

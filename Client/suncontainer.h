@@ -11,6 +11,8 @@ class SunContainer : public QGraphicsTextItem
 public:
     SunContainer(QGraphicsTextItem * parent = nullptr);
     int get_sun_count();
+    void setCount(unsigned int newCount);
+
 private:
     unsigned int count;
 private slots:

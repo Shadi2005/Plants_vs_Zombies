@@ -29,8 +29,16 @@ PeaShooter::PeaShooter(QPair<int,int> _loc) : Plant(_loc)
     connect(attackTimer, &QTimer::timeout, this, &PeaShooter::attack);
 }
 
+PeaShooter::~PeaShooter()
+{
+    attackTimer->stop();
+    checkTimer->stop();
+    delete attackTimer;
+    delete checkTimer;
+}
+
 void PeaShooter::attack()
-{   
+{
     for(int i=loc.second;i<12;i++)
     {
         for(auto character:game->field[loc.first][i]->characters)

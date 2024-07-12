@@ -18,6 +18,7 @@ protected:
     void setProgressBar();
 public:
     Character(QPair<int,int>,QWidget* parent = 0);
+    virtual ~Character();
     void decrease_health(int attack_power);
 
     QPair<int,int> loc;
